@@ -1,6 +1,11 @@
 import React from "react";
+import { removeLocalStorageToken } from '../utils';
 
 function Navbar() {
+  function onClickLogOut() {
+    removeLocalStorageToken();
+  }
+
   return (
     <div id="Navbar">
       <div id="leftNavbar">
@@ -8,6 +13,9 @@ function Navbar() {
       </div>
       <div id="rightNavbar">
         Other Icons
+        <button id="logOut" onClick={onClickLogOut}>
+          Log Out
+        </button>
       </div>
     </div>
   )

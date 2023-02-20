@@ -10,3 +10,7 @@ export function writeLocalStorageToken(token) {
   
   return token;
 }
+
+export function removeLocalStorageToken() {
+  localStorage.removeItem('userToken');
+}

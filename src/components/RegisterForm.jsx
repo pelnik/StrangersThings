@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { register } from '../api-adapter';
 import { checkLocalStorageToken, writeLocalStorageToken } from '../utils';
+import { useOutletContext } from "react-router-dom";
 
 function RegisterForm() {
   const [typedUsername, setTypedUsername] = useState("");
   const [typedPassword, setTypedPassword] = useState("");
   const [typedConfirmPassword, setTypedConfirmPassword] = useState("");
   const [passwordNotMatching, setPasswordNotMatching] = useState(false);
+  const [userToken, setUserToken] = useOutletContext("");
 
-  const [userToken, setUserToken] = useState("");
 
   async function registerUserToken() {
     try {
@@ -46,10 +47,16 @@ function RegisterForm() {
     } else {
       setPasswordNotMatching(true)
     }
-
   }
 
+  useEffect(() => {
+    setUserToken(checkLocalStorageToken());
+  }
+  ,[])
+
   return (
+    userToken !== null ?
+    <p>You're already logged in!</p> :
     <div>
       <form onSubmit={onSubmitHandler} id="loginFormContainer">
         <div id="loginUsernameContainer">
