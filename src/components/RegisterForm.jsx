@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { register } from '../api-adapter';
+import { checkLocalStorageToken, writeLocalStorageToken } from '../utils';
 
 function RegisterForm() {
   const [typedUsername, setTypedUsername] = useState("");
   const [typedPassword, setTypedPassword] = useState("");
+  const [typedConfirmPassword, setTypedConfirmPassword] = useState("");
+  const [passwordNotMatching, setPasswordNotMatching] = useState(false);
   const [userToken, setUserToken] = useState("");
 
   async function registerUserToken() {
@@ -17,7 +20,7 @@ function RegisterForm() {
       const token = response.data.token;
   
       console.log(token);
-      setUserToken(token);
+      writeLocalStorageToken(token);
     } catch (error) {
       console.error(error);
     }
@@ -31,12 +34,16 @@ function RegisterForm() {
   function onClickHandler(evt) {
     console.log(evt);
 
-    if (evt.target.value === "Register") {
+    if (typedPassword === typedConfirmPassword) {
       registerUserToken();
+
+      setTypedUsername("");
+      setTypedPassword("");
+      setTypedConfirmPassword("");
+    } else {
+      setPasswordNotMatching(true)
     }
 
-    setTypedUsername("");
-    setTypedPassword("");
   }
 
   return (
@@ -69,9 +76,28 @@ function RegisterForm() {
           }
         />
       </div>
+      <div id="confirmPasswordContainer">
+        <p>Confirm Password:</p>
+        <input
+          type="text"
+          id="confirmPassword"
+          name="confirmPassword"
+          value={typedConfirmPassword}
+          onChange={
+            (evt) => {
+              onChangeHandler(evt, setTypedConfirmPassword)
+            }
+          }
+        />
+      </div>
       <div id="loginSubmitContainer">
         <button value="Register" onClick={onClickHandler}>Register</button>
       </div>
+      {
+        passwordNotMatching
+        ? <p id="passwordNotMatching">Please enter the same value in each password field</p>
+        : null
+      }
     </div>
   );
 }
