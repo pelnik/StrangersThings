@@ -11,7 +11,7 @@ import {
 const container = document.getElementById("app");
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='' element={<Main />} />
+    <Route path='/' element={<Main />} />
   )
 )
 
