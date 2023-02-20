@@ -24,6 +24,11 @@
   text-align: center;
 }
 
+#loginForm {
+  display: flex;
+  gap: 20px;
+}
+
 #searchContainer {
   display: flex;
   flex-direction: row;

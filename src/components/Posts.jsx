@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getPosts } from '../api-adapter';
-import IndividualPost from './IndividualPost';
+import { IndividualPost, LoginForm} from './';
 
 function Posts() {
   const [posts, setPosts] = useState([]);
@@ -33,6 +33,7 @@ function Posts() {
       <h1 id="postHeader">
         Stranger's Things
       </h1>
+      <LoginForm />
       <div id='searchContainer'>
         <p>Search:</p>
         <input id="postFilter" onChange={onSearchChange}></input>
