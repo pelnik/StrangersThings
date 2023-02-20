@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { register } from '../api-adapter';
 
-function LoginForm() {
+function RegisterForm() {
   const [typedUsername, setTypedUsername] = useState("");
   const [typedPassword, setTypedPassword] = useState("");
+  const [userToken, setUserToken] = useState("");
 
-  // async function registerUserToken() {
-  //   try {
-  //     const user = {
-  //       username: typedUsername,
-  //       password: typedPassword,
-  //     }
+  async function registerUserToken() {
+    try {
+      const user = {
+        username: typedUsername,
+        password: typedPassword,
+      }
 
-  //     const response = await register(user);
-  //     const token = response.data.token;
+      const response = await register(user);
+      const token = response.data.token;
   
-  //     console.log(token);
-  //     setUserToken(token);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+      console.log(token);
+      setUserToken(token);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 
   function onChangeHandler(evt, setState) {
@@ -30,9 +31,9 @@ function LoginForm() {
   function onClickHandler(evt) {
     console.log(evt);
 
-    // if (evt.target.value === "Register") {
-    //   // registerUserToken();
-    // }
+    if (evt.target.value === "Register") {
+      registerUserToken();
+    }
 
     setTypedUsername("");
     setTypedPassword("");
@@ -69,10 +70,10 @@ function LoginForm() {
         />
       </div>
       <div id="loginSubmitContainer">
-        <button value="Login" onClick={onClickHandler}>Login</button>
+        <button value="Register" onClick={onClickHandler}>Register</button>
       </div>
     </div>
   );
 }
 
-export default LoginForm;
+export default RegisterForm;

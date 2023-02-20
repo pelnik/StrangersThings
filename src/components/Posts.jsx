@@ -5,6 +5,7 @@ import { IndividualPost, LoginForm} from './';
 function Posts() {
   const [posts, setPosts] = useState([]);
   const [postFilter, setPostFilter] = useState('');
+  const [userToken, setUserToken] = useState('');
 
   const callGetPosts = async () => {
     try {
@@ -33,7 +34,7 @@ function Posts() {
       <h1 id="postHeader">
         Stranger's Things
       </h1>
-      <LoginForm />
+      <LoginForm userToken={userToken} setUserToken={setUserToken} />
       <div id='searchContainer'>
         <p>Search:</p>
         <input id="postFilter" onChange={onSearchChange}></input>
