@@ -1,9 +1,15 @@
-import React, {useState} from "react";
-import { Navbar, Posts } from "./";
+import React, {useEffect, useState} from "react";
 import { Routes, Route} from 'react-router-dom';
+import { Navbar, Posts } from "./";
+import { checkLocalStorageToken } from '../utils';
 
 function Main() {
   const [userToken, setUserToken] = useState("");
+
+  useEffect(() => {
+    setUserToken(checkLocalStorageToken());
+  }
+  ,[])
 
   return (
     <div id="main">

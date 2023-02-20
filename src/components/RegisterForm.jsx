@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from '../api-adapter';
-import { checkLocalStorageToken, writeLocalStorageToken } from '../utils';
+import { writeLocalStorageToken } from '../utils';
 
 function RegisterForm({userToken, setUserToken}) {
   const [typedUsername, setTypedUsername] = useState("");
@@ -50,11 +50,6 @@ function RegisterForm({userToken, setUserToken}) {
       setPasswordNotMatching(true)
     }
   }
-
-  useEffect(() => {
-    setUserToken(checkLocalStorageToken());
-  }
-  ,[])
 
   return (
     userToken !== null ?
