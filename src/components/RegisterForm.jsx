@@ -7,6 +7,7 @@ function RegisterForm() {
   const [typedPassword, setTypedPassword] = useState("");
   const [typedConfirmPassword, setTypedConfirmPassword] = useState("");
   const [passwordNotMatching, setPasswordNotMatching] = useState(false);
+
   const [userToken, setUserToken] = useState("");
 
   async function registerUserToken() {
@@ -31,8 +32,9 @@ function RegisterForm() {
     setState(evt.target.value);
   }
 
-  function onClickHandler(evt) {
+  function onSubmitHandler(evt) {
     console.log(evt);
+    evt.preventDefault();
 
     if (typedPassword === typedConfirmPassword) {
       registerUserToken();
@@ -40,6 +42,7 @@ function RegisterForm() {
       setTypedUsername("");
       setTypedPassword("");
       setTypedConfirmPassword("");
+      setPasswordNotMatching(false);
     } else {
       setPasswordNotMatching(true)
     }
@@ -47,57 +50,64 @@ function RegisterForm() {
   }
 
   return (
-    <div id="loginFormContainer">
-      <div id="loginUsernameContainer">
-        <p>Username:</p>
-        <input
-          type="text"
-          id="loginUsername"
-          name="loginUsername"
-          value={typedUsername}
-          onChange={
-            (evt) => {
-              onChangeHandler(evt, setTypedUsername)
+    <div>
+      <form onSubmit={onSubmitHandler} id="loginFormContainer">
+        <div id="loginUsernameContainer">
+          <label>Username:</label>
+          <input
+            type="text"
+            id="loginUsername"
+            name="loginUsername"
+            required="required"
+            minLength="5"
+            value={typedUsername}
+            onChange={
+              (evt) => {
+                onChangeHandler(evt, setTypedUsername)
+              }
             }
-          }
-        />
-      </div>
-      <div id="loginPasswordContainer">
-        <p>Password:</p>
-        <input
-          type="text"
-          id="loginPassword"
-          name="loginPassword"
-          value={typedPassword}
-          onChange={
-            (evt) => {
-              onChangeHandler(evt, setTypedPassword)
+          />
+        </div>
+        <div id="loginPasswordContainer">
+          <label>Password:</label>
+          <input
+            type="text"
+            id="loginPassword"
+            name="loginPassword"
+            required="required"
+            value={typedPassword}
+            minLength="8"
+            onChange={
+              (evt) => {
+                onChangeHandler(evt, setTypedPassword)
+              }
             }
-          }
-        />
-      </div>
-      <div id="confirmPasswordContainer">
-        <p>Confirm Password:</p>
-        <input
-          type="text"
-          id="confirmPassword"
-          name="confirmPassword"
-          value={typedConfirmPassword}
-          onChange={
-            (evt) => {
-              onChangeHandler(evt, setTypedConfirmPassword)
+          />
+        </div>
+        <div id="confirmPasswordContainer">
+          <label>Confirm Password:</label>
+          <input
+            type="text"
+            id="confirmPassword"
+            name="confirmPassword"
+            required="required"
+            value={typedConfirmPassword}
+            onChange={
+              (evt) => {
+                onChangeHandler(evt, setTypedConfirmPassword)
+              }
             }
-          }
-        />
-      </div>
-      <div id="loginSubmitContainer">
-        <button value="Register" onClick={onClickHandler}>Register</button>
-      </div>
-      {
-        passwordNotMatching
-        ? <p id="passwordNotMatching">Please enter the same value in each password field</p>
-        : null
-      }
+          />
+        </div>
+        <div id="loginSubmitContainer">
+          <input type="submit" value="Register" />
+        </div>
+        {
+          passwordNotMatching
+          ? <p id="passwordNotMatching">Please enter the same value in each password field</p>
+          : null
+        }
+      </form>
     </div>
   );
 }
