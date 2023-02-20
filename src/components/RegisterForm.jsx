@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { register } from '../api-adapter';
 import { checkLocalStorageToken, writeLocalStorageToken } from '../utils';
-import { useOutletContext } from "react-router-dom";
 
-function RegisterForm() {
+function RegisterForm({userToken, setUserToken}) {
   const [typedUsername, setTypedUsername] = useState("");
   const [typedPassword, setTypedPassword] = useState("");
   const [typedConfirmPassword, setTypedConfirmPassword] = useState("");
   const [passwordNotMatching, setPasswordNotMatching] = useState(false);
-  const [userToken, setUserToken] = useOutletContext("");
+  const navigate = useNavigate();
 
 
   async function registerUserToken() {
@@ -21,8 +21,10 @@ function RegisterForm() {
       const response = await register(user);
       const token = response.data.token;
   
-      console.log(token);
+      console.log(response);
+      setUserToken(token)
       writeLocalStorageToken(token);
+      navigate('/');
     } catch (error) {
       console.error(error);
     }

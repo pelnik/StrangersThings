@@ -1,7 +1,9 @@
 import React from "react";
+import { RegisterForm, NavbarNotLoggedIn } from './'
 import { removeLocalStorageToken } from '../utils';
+import { Routes, Route } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({userToken, setUserToken}) {
   function onClickLogOut() {
     removeLocalStorageToken();
   }
@@ -9,13 +11,18 @@ function Navbar() {
   return (
     <div id="Navbar">
       <div id="leftNavbar">
-        Home icon
       </div>
       <div id="rightNavbar">
-        Other Icons
-        <button id="logOut" onClick={onClickLogOut}>
-          Log Out
-        </button>
+        <Routes>
+          <Route path="/" element={<NavbarNotLoggedIn />} />
+          <Route
+            path="/register"
+            element={<RegisterForm
+              userToken={userToken}
+              setUserToken={setUserToken}
+            />}
+          />
+        </Routes>
       </div>
     </div>
   )
