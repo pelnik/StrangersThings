@@ -7,9 +7,6 @@ function Main() {
   return (
     <div id="main">
       <Navbar />
-      <h1 id="postHeader">
-        Stranger's Things
-      </h1>
       <Outlet />
     </div>
   )

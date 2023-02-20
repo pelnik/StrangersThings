@@ -29,8 +29,14 @@ function Posts() {
   }
 
   return (
-    <>
-      <input onChange={onSearchChange}></input>
+    <div id="postPageContainer">
+      <h1 id="postHeader">
+        Stranger's Things
+      </h1>
+      <div id='searchContainer'>
+        <p>Search:</p>
+        <input id="postFilter" onChange={onSearchChange}></input>
+      </div>
       <div id="all-posts">
         {
           posts
@@ -50,7 +56,7 @@ function Posts() {
           })
         }
       </div>
-    </>
+    </div>
   )
 }
 
