@@ -6,11 +6,11 @@ const IndividualPost = ({postData}) => {
 
   return (
     <div className="individual-post">
-      Post Title: {post.title};<br />
-      Post Description: {post.description};<br />
-      Post Price: {post.price};<br />
-      Post Author: {post.author.username};<br />
-      Post Title: {post.title};<br />
+      <div>Post Title: {post.title}</div>
+      <div>Post Description: {post.description}</div>
+      <div>Post Price: {post.price}</div>
+      <div>Post Author: {post.author.username}</div>
+      <div>Post Title: {post.title}</div>
     </div>
   )
 }

@@ -21,5 +21,8 @@ body {
 .individual-post {
   padding: 20px;
   border: solid 1px black;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
 }
 
