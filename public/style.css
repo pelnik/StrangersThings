@@ -3,6 +3,21 @@ body {
   box-sizing: border-box;
 }
 
+#postHeader {
+  text-align: center;
+}
+
+#all-posts {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+}
+
 .individual-post {
   padding: 20px;
   border: solid 1px black;
