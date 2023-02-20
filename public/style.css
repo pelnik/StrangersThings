@@ -1,4 +1,10 @@
 body {
-  margin: 0
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.individual-post {
+  padding: 20px;
+  border: solid 1px black;
 }
 

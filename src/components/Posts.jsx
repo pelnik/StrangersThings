@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getPosts } from '../api-adapter';
+import IndividualPost from './IndividualPost';
 
 function Posts() {
   const [posts, setPosts] = useState([]);
@@ -18,10 +19,20 @@ function Posts() {
 
   useEffect(() => {
     callGetPosts();
+    console.log('after useeffect', posts)
   }, [])
 
   return (
-    <div id="posts"></div>
+    <div id="all-posts">
+      {
+        posts.map( (post) => {
+          return <IndividualPost
+            key={`post: ${post._id}`}
+            postData = {post}  
+          />
+        })
+      }
+    </div>
   )
 }
 
