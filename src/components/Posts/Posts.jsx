@@ -38,8 +38,8 @@ function Posts({ userToken }) {
     <div id="mainContent">
       <div id="postPageContainer">
         <h1 id="postHeader">Stranger's Things</h1>
-        {!showSubmissionPage ? (
-          <button
+        {!showSubmissionPage && userToken !== null 
+        ? <button
             id="show-submission-page"
             onClick={() => {
               onClickShowSubmission(setShowSubmissionPage);
@@ -47,7 +47,7 @@ function Posts({ userToken }) {
           >
             Submit a post!
           </button>
-        ) : null}
+        : null}
         {userToken ? (
           <h2>Debug: User is Logged In</h2>
         ) : (
@@ -75,14 +75,14 @@ function Posts({ userToken }) {
             })}
         </div>
       </div>
-      {showSubmissionPage ? (
-        <PostSubmission
+      {showSubmissionPage && userToken !== null
+      ? <PostSubmission
           setShowSubmissionPage={setShowSubmissionPage}
           userToken={userToken}
           posts={posts}
           setPosts={setPosts}
         />
-      ) : null}
+      : null}
     </div>
   );
 }
