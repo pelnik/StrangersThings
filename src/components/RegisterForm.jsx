@@ -74,62 +74,62 @@ function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
     }
   }
 
-  return userToken !== null ? (
-    <p>You're already logged in!</p>
-  ) : (
-    <div>
-      <form onSubmit={onSubmitHandler} id="loginFormContainer">
-        <div id="loginUsernameContainer">
-          <label>Username:</label>
-          <input
-            type="text"
-            id="loginUsername"
-            name="loginUsername"
-            required="required"
-            minLength="5"
-            value={typedUsername}
-            onChange={(evt) => {
-              onChangeHandler(evt, setTypedUsername);
-            }}
-          />
-        </div>
-        <div id="loginPasswordContainer">
-          <label>Password:</label>
-          <input
-            type="text"
-            id="loginPassword"
-            name="loginPassword"
-            required="required"
-            value={typedPassword}
-            minLength="8"
-            onChange={(evt) => {
-              onChangeHandler(evt, setTypedPassword);
-            }}
-          />
-        </div>
-        <div id="confirmPasswordContainer">
-          <label>Confirm Password:</label>
-          <input
-            type="text"
-            id="confirmPassword"
-            name="confirmPassword"
-            required="required"
-            value={typedConfirmPassword}
-            onChange={(evt) => {
-              onChangeHandler(evt, setTypedConfirmPassword);
-            }}
-          />
-        </div>
-        <div id="loginSubmitContainer">
-          <input type="submit" value="Register" />
-        </div>
-        {passwordNotMatching ? (
-          <p id="passwordNotMatching">
-            Please enter the same value in each password field
-          </p>
-        ) : null}
-      </form>
-    </div>
+  return (
+    userToken !== null
+      ? <p>You're already logged in!</p>
+      : <div id="loginFormParent">
+        <form onSubmit={onSubmitHandler} id="loginFormContainer">
+          <div id="loginUsernameContainer">
+            <label>Username:</label>
+            <input
+              type="text"
+              id="loginUsername"
+              name="loginUsername"
+              required="required"
+              minLength="5"
+              value={typedUsername}
+              onChange={(evt) => {
+                onChangeHandler(evt, setTypedUsername);
+              }}
+            />
+          </div>
+          <div id="loginPasswordContainer">
+            <label>Password:</label>
+            <input
+              type="text"
+              id="loginPassword"
+              name="loginPassword"
+              required="required"
+              value={typedPassword}
+              minLength="8"
+              onChange={(evt) => {
+                onChangeHandler(evt, setTypedPassword);
+              }}
+            />
+          </div>
+          <div id="confirmPasswordContainer">
+            <label>Confirm Password:</label>
+            <input
+              type="text"
+              id="confirmPassword"
+              name="confirmPassword"
+              required="required"
+              value={typedConfirmPassword}
+              onChange={(evt) => {
+                onChangeHandler(evt, setTypedConfirmPassword);
+              }}
+            />
+          </div>
+          <div id="loginSubmitContainer">
+            <input type="submit" value="Register" />
+          </div>
+          {passwordNotMatching ? (
+            <p id="passwordNotMatching">
+              Please enter the same value in each password field
+            </p>
+          ) : null}
+        </form>
+      </div>
   );
 }
 

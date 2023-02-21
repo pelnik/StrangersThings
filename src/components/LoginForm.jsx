@@ -1,77 +1,114 @@
 import React, { useState, useEffect } from "react";
-import { register } from '../api-adapter';
+import { useNavigate } from "react-router-dom";
+import { login } from "../api-adapter";
+import { writeLocalStorageToken } from "../utils";
 
-function LoginForm() {
+function LoginForm({ userToken, setUserToken, alert, setAlert }) {
   const [typedUsername, setTypedUsername] = useState("");
   const [typedPassword, setTypedPassword] = useState("");
+  const [wrongLogin, setWrongLogin] = useState(false);
 
-  // async function registerUserToken() {
-  //   try {
-  //     const user = {
-  //       username: typedUsername,
-  //       password: typedPassword,
-  //     }
+  const navigate = useNavigate();
 
-  //     const response = await register(user);
-  //     const token = response.data.token;
-  
-  //     console.log(token);
-  //     setUserToken(token);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+  async function loginUserToken() {
+    try {
+      const user = {
+        username: typedUsername,
+        password: typedPassword,
+      };
 
+      const response = await login(user);
+      const success = response.success;
+
+      if (success === false) {
+        if (response.error.name === "InvalidCredentials") {
+          setWrongLogin(true);
+        } else {
+          console.error(response)
+        }
+      } else if (success === true) {
+        const token = response.data.token;
+
+        setUserToken(token);
+        writeLocalStorageToken(token);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error(error, response);
+    }
+  }
+
+  useEffect(() => {
+    if (userToken) {
+      setAlert({
+        ...alert,
+        userLoggedInRegister: true,
+      });
+      navigate("/");
+    }
+  }, [userToken]);
 
   function onChangeHandler(evt, setState) {
     setState(evt.target.value);
   }
 
-  function onClickHandler(evt) {
+  function onSubmitHandler(evt) {
     console.log(evt);
+    evt.preventDefault();
 
-    // if (evt.target.value === "Register") {
-    //   // registerUserToken();
-    // }
+    loginUserToken();
 
     setTypedUsername("");
     setTypedPassword("");
   }
 
+  function onClickParent() {
+    setWrongLogin(false);
+  }
+
   return (
-    <div id="loginFormContainer">
-      <div id="loginUsernameContainer">
-        <p>Username:</p>
-        <input
-          type="text"
-          id="loginUsername"
-          name="loginUsername"
-          value={typedUsername}
-          onChange={
-            (evt) => {
-              onChangeHandler(evt, setTypedUsername)
-            }
-          }
-        />
+    userToken !== null
+    ? <p>You're already logged in!</p>
+    : <div id="loginFormParent" onClick={onClickParent}>
+        {
+          wrongLogin
+          ? <p>Wrong username or password. Please try again.</p>
+          : null
+        }
+        <form onSubmit={onSubmitHandler} id="loginFormContainer">
+          <div id="loginUsernameContainer">
+            <label>Username:</label>
+            <input
+              type="text"
+              id="loginUsername"
+              name="loginUsername"
+              required="required"
+              minLength="5"
+              value={typedUsername}
+              onChange={(evt) => {
+                onChangeHandler(evt, setTypedUsername);
+              }}
+            />
+          </div>
+          <div id="loginPasswordContainer">
+            <label>Password:</label>
+            <input
+              type="text"
+              id="loginPassword"
+              name="loginPassword"
+              required="required"
+              value={typedPassword}
+              minLength="8"
+              onChange={(evt) => {
+                onChangeHandler(evt, setTypedPassword);
+              }}
+            />
+          </div>
+          <div id="loginSubmitContainer">
+            <input type="submit" value="Login" />
+          </div>
+        </form>
       </div>
-      <div id="loginPasswordContainer">
-        <p>Password:</p>
-        <input
-          type="text"
-          id="loginPassword"
-          name="loginPassword"
-          value={typedPassword}
-          onChange={
-            (evt) => {
-              onChangeHandler(evt, setTypedPassword)
-            }
-          }
-        />
-      </div>
-      <div id="loginSubmitContainer">
-        <button value="Login" onClick={onClickHandler}>Login</button>
-      </div>
-    </div>
   );
 }
 

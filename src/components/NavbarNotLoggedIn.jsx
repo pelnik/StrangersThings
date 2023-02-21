@@ -8,10 +8,15 @@ function NavbarNotLoggedIn() {
   function onClickRegister() {
     navigate('/register');
   }
+  function onClickLogin() {
+    navigate('/login');
+  }
+  
+
 
   return (
     <div id="navbarNotLoggedIn">
-      <button>Log in</button>
+      <button onClick={onClickLogin}>Log in</button>
       <button onClick={onClickRegister}>Register</button>
     </div>
   )

@@ -30,6 +30,12 @@
   text-align: center;
 }
 
+#loginFormParent {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
 #loginFormContainer {
   display: flex;
   gap: 20px;
