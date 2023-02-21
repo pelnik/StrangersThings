@@ -37,18 +37,16 @@ function Posts({ userToken }) {
     <div id="mainContent">
       <div id="postPageContainer">
         <h1 id="postHeader">Stranger's Things</h1>
-        {
-          !showSubmissionPage
-          ? <button
+        {!showSubmissionPage ? (
+          <button
             id="show-submission-page"
             onClick={() => {
-              onClickShowSubmission(setShowSubmissionPage)
+              onClickShowSubmission(setShowSubmissionPage);
             }}
           >
             Submit a post!
           </button>
-          : null
-        }
+        ) : null}
         {userToken ? (
           <h2>Debug: User is Logged In</h2>
         ) : (
@@ -59,7 +57,7 @@ function Posts({ userToken }) {
           <input id="postFilter" onChange={onSearchChange}></input>
         </div>
         <div id="all-posts">
-          {posts
+          {[...posts]
             .filter((post) => {
               return (
                 post.title.toLowerCase().includes(postFilter) ||
@@ -68,6 +66,7 @@ function Posts({ userToken }) {
                 post.author.username.toLowerCase().includes(postFilter)
               );
             })
+            .reverse()
             .map((post) => {
               return (
                 <IndividualPost key={`post: ${post._id}`} postData={post} />
@@ -75,7 +74,12 @@ function Posts({ userToken }) {
             })}
         </div>
       </div>
-      {showSubmissionPage ? <PostSubmission setShowSubmissionPage={setShowSubmissionPage} /> : null}
+      {showSubmissionPage ? (
+        <PostSubmission
+          setShowSubmissionPage={setShowSubmissionPage}
+          userToken={userToken}
+        />
+      ) : null}
     </div>
   );
 }

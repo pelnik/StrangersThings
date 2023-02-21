@@ -59,7 +59,6 @@ function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
   }
 
   function onSubmitHandler(evt) {
-    console.log(evt);
     evt.preventDefault();
 
     if (typedPassword === typedConfirmPassword) {

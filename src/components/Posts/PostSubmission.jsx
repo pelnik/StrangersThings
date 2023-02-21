@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { IndividualPostSubmissionDetail } from '..';
+import { postSubmission } from '../../api-adapter/index.js';
 
-function PostSubmission({setShowSubmissionPage}) {
-  const [submissionDetails, setSubmissionDetails] = useState({
+function PostSubmission({setShowSubmissionPage, userToken}) {
+  const defaultSubmissionDetails = {
     title: '',
     description: '',
     price: '',
     location: '',
     willDeliver: false,
-  })
+  }
+
+  const [submissionDetails, setSubmissionDetails] = useState(defaultSubmissionDetails)
 
   function updateSubmission(key, value, submissionDetails, setSubmissionDetails) {
     const submissionCopy = {...submissionDetails};
@@ -17,21 +20,25 @@ function PostSubmission({setShowSubmissionPage}) {
   }
 
   function onChangeDetail(evt, key) {
-    updateSubmission(key, evt.target.value, submissionDetails, setSubmissionDetails)
+    const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
+
+    updateSubmission(key, value, submissionDetails, setSubmissionDetails)
   }
 
   function onClickClose() {
     setShowSubmissionPage(false);
   }
 
-  function onSubmitPost() {
-    
+  function onSubmitPost(evt) {
+    evt.preventDefault();
+    postSubmission(submissionDetails, userToken);
+    setSubmissionDetails(defaultSubmissionDetails);
   }
 
   return (
     <div id="post-submission-parent">
       <h1> Enter details of your post below: </h1>
-      <form id="postSubmissionForm">
+      <form id="postSubmissionForm" onSubmit={onSubmitPost}>
         {/* Using a child because HTML was a little too messy */}
         <IndividualPostSubmissionDetail
           propKey="title"

@@ -58,3 +58,24 @@ export const login = async (user) => {
     console.error(error);
   }
 }
+
+export const postSubmission = async (postDetails, token) => {
+  try {
+    const response = await fetch(BASE_URL + '/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        post: postDetails
+      })
+    })
+    const result = await response.json();
+
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
