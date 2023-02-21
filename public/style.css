@@ -56,6 +56,22 @@
   flex-direction: column;
 }
 
+#postSubmissionForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#submissionPostDescription {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+#submissionPostDescriptionInput {
+  height: 5rem;
+}
+
 #loginFormParent {
   display: flex;
   flex-direction: row;
