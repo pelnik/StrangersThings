@@ -87,3 +87,21 @@ export const postSubmission = async (postDetails, token) => {
     console.error(error);
   }
 }
+
+export const deleteSubmission = async (id, token) => {
+  try {
+    const response = await fetch(BASE_URL + `/posts/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    const result = await response.json();
+
+    console.log(result)
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}

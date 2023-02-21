@@ -67,7 +67,13 @@ function Posts({ userToken }) {
             .reverse()
             .map((post) => {
               return (
-                <IndividualPost key={`post: ${post._id}`} postData={post} />
+                <IndividualPost
+                  key={`post: ${post._id}`}
+                  postData={post}
+                  userToken={userToken}
+                  posts={posts}
+                  setPosts={setPosts}
+                />
               );
             })}
         </div>

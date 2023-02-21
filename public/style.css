@@ -126,6 +126,7 @@
   display: flex;
   gap: 15px;
   flex-direction: column;
+  position: relative;
 }
 
 .my-post {
@@ -134,4 +135,10 @@
 
 .my-post h3 {
   color: red;
+}
+
+#my-post-delete {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
