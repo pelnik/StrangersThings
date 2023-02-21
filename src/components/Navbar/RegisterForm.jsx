@@ -39,7 +39,6 @@ function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
         navigate("/login");
       }
     } catch (error) {
-      console.log(response);
       console.error(error);
     }
   }

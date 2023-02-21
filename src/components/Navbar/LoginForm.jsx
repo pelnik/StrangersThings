@@ -53,7 +53,6 @@ function LoginForm({ userToken, setUserToken, alert, setAlert }) {
   }
 
   function onSubmitHandler(evt) {
-    console.log(evt);
     evt.preventDefault();
 
     loginUserToken();

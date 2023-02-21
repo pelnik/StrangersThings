@@ -13,7 +13,6 @@ function Posts({ userToken }) {
       const response = await getPosts();
       const posts = response.data.posts;
 
-      console.log(posts);
       setPosts(posts);
     } catch (error) {
       console.error(error);
@@ -25,11 +24,9 @@ function Posts({ userToken }) {
     if (refreshPosts) {
       setRefreshPosts(false);
     }
-    console.log("after useeffect", posts);
   }, [refreshPosts]);
 
   const onSearchChange = (evt) => {
-    console.log(evt.target.value);
     setPostFilter(evt.target.value.toLowerCase());
   };
 

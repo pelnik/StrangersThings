@@ -34,8 +34,7 @@ function PostSubmission({
   async function handlePostRequest() {
     const response = await postSubmission(submissionDetails, userToken);
     
-    console.log('onSubmit response', response)
-    console.log('posts: ', posts , 'type of posts: ', Array.isArray(posts))
+
     const post = response.data.post;
 
     if (response.success === true ) {
