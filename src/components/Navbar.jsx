@@ -4,14 +4,22 @@ import { removeLocalStorageToken } from '../utils';
 import { Routes, Route } from 'react-router-dom';
 
 function Navbar({userToken, setUserToken}) {
-  const [loggedInUserRegister, setLoggedInUserRegister] = useState(false);
+  const [alert, setAlert] = useState({
+    userLoggedInRegister: false,
+    userAlreadyRegistered: false
+  });
 
   function onClickLogOut() {
     removeLocalStorageToken();
   }
 
   function clearAlerts() {
-    setLoggedInUserRegister(false);
+    const alertCopy = {...alert};
+    for (const key in alertCopy) {
+      alertCopy[key] = false;
+    }
+
+    setAlert(alertCopy);
   }
 
   return (
@@ -21,8 +29,13 @@ function Navbar({userToken, setUserToken}) {
       <div id="rightNavbar" onClick={clearAlerts}>
         <>
           {
-          loggedInUserRegister
+          alert.userLoggedInRegister
           ? <p>You're already logged in! Log out to register another user.</p>
+          : null
+          }
+          {
+          alert.userAlreadyRegistered
+          ? <p>You're already registered! Please log in.</p>
           : null
           }
         </>
@@ -40,7 +53,8 @@ function Navbar({userToken, setUserToken}) {
             element={<RegisterForm
               userToken={userToken}
               setUserToken={setUserToken}
-              setLoggedInUserRegister={setLoggedInUserRegister}
+              alert={alert}
+              setAlert={setAlert}
             />}
           />
         </Routes>

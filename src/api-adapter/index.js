@@ -30,7 +30,6 @@ export const register = async (user) => {
     const result = await response.json();
 
     console.log(result);
-
     return result;
   } catch (error) {
     console.error(error);

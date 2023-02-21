@@ -1,44 +1,58 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { register } from '../api-adapter';
-import { writeLocalStorageToken } from '../utils';
+import { register } from "../api-adapter";
+import { writeLocalStorageToken } from "../utils";
 
-function RegisterForm({userToken, setUserToken, setLoggedInUserRegister}) {
+function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
   const [typedUsername, setTypedUsername] = useState("");
   const [typedPassword, setTypedPassword] = useState("");
   const [typedConfirmPassword, setTypedConfirmPassword] = useState("");
   const [passwordNotMatching, setPasswordNotMatching] = useState(false);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
 
   async function registerUserToken() {
     try {
       const user = {
         username: typedUsername,
         password: typedPassword,
-      }
+      };
 
       const response = await register(user);
-      const token = response.data.token;
-  
-      console.log(response);
-      setUserToken(token)
-      writeLocalStorageToken(token);
-      navigate('/');
+      const success = response.success;
+
+      if (success === false) {
+        if (response.error.name === "UserExists") {
+          setAlert({
+            ...alert,
+            userAlreadyRegistered: true,
+          });
+          navigate("/");
+        } else {
+          throw new Error("Unknown Register API failure. See console log.");
+        }
+      } else if (success === true) {
+        const token = response.data.token;
+
+        setUserToken(token);
+        writeLocalStorageToken(token);
+        navigate("/");
+      }
     } catch (error) {
+      console.log(response);
       console.error(error);
     }
   }
 
   useEffect(() => {
     if (userToken) {
-      setLoggedInUserRegister(true);
-      navigate('/');
+      setAlert({
+        ...alert,
+        userLoggedInRegister: true,
+      });
+      navigate("/");
     }
-  }
-  , [userToken])
-
-
+  }, [userToken]);
 
   function onChangeHandler(evt, setState) {
     setState(evt.target.value);
@@ -56,13 +70,13 @@ function RegisterForm({userToken, setUserToken, setLoggedInUserRegister}) {
       setTypedConfirmPassword("");
       setPasswordNotMatching(false);
     } else {
-      setPasswordNotMatching(true)
+      setPasswordNotMatching(true);
     }
   }
 
-  return (
-    userToken !== null ?
-    <p>You're already logged in!</p> :
+  return userToken !== null ? (
+    <p>You're already logged in!</p>
+  ) : (
     <div>
       <form onSubmit={onSubmitHandler} id="loginFormContainer">
         <div id="loginUsernameContainer">
@@ -74,11 +88,9 @@ function RegisterForm({userToken, setUserToken, setLoggedInUserRegister}) {
             required="required"
             minLength="5"
             value={typedUsername}
-            onChange={
-              (evt) => {
-                onChangeHandler(evt, setTypedUsername)
-              }
-            }
+            onChange={(evt) => {
+              onChangeHandler(evt, setTypedUsername);
+            }}
           />
         </div>
         <div id="loginPasswordContainer">
@@ -90,11 +102,9 @@ function RegisterForm({userToken, setUserToken, setLoggedInUserRegister}) {
             required="required"
             value={typedPassword}
             minLength="8"
-            onChange={
-              (evt) => {
-                onChangeHandler(evt, setTypedPassword)
-              }
-            }
+            onChange={(evt) => {
+              onChangeHandler(evt, setTypedPassword);
+            }}
           />
         </div>
         <div id="confirmPasswordContainer">
@@ -105,21 +115,19 @@ function RegisterForm({userToken, setUserToken, setLoggedInUserRegister}) {
             name="confirmPassword"
             required="required"
             value={typedConfirmPassword}
-            onChange={
-              (evt) => {
-                onChangeHandler(evt, setTypedConfirmPassword)
-              }
-            }
+            onChange={(evt) => {
+              onChangeHandler(evt, setTypedConfirmPassword);
+            }}
           />
         </div>
         <div id="loginSubmitContainer">
           <input type="submit" value="Register" />
         </div>
-        {
-          passwordNotMatching
-          ? <p id="passwordNotMatching">Please enter the same value in each password field</p>
-          : null
-        }
+        {passwordNotMatching ? (
+          <p id="passwordNotMatching">
+            Please enter the same value in each password field
+          </p>
+        ) : null}
       </form>
     </div>
   );
