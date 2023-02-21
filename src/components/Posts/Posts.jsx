@@ -6,6 +6,7 @@ function Posts({ userToken }) {
   const [posts, setPosts] = useState([]);
   const [postFilter, setPostFilter] = useState("");
   const [showSubmissionPage, setShowSubmissionPage] = useState(false);
+  const [refreshPosts, setRefreshPosts] = useState(false);
 
   const callGetPosts = async () => {
     try {
@@ -21,8 +22,11 @@ function Posts({ userToken }) {
 
   useEffect(() => {
     callGetPosts();
+    if (refreshPosts) {
+      setRefreshPosts(false);
+    }
     console.log("after useeffect", posts);
-  }, []);
+  }, [refreshPosts]);
 
   const onSearchChange = (evt) => {
     console.log(evt.target.value);
@@ -78,6 +82,8 @@ function Posts({ userToken }) {
         <PostSubmission
           setShowSubmissionPage={setShowSubmissionPage}
           userToken={userToken}
+          posts={posts}
+          setPosts={setPosts}
         />
       ) : null}
     </div>

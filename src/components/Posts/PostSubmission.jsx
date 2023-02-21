@@ -1,28 +1,57 @@
-import React, { useState } from 'react';
-import { IndividualPostSubmissionDetail } from '..';
-import { postSubmission } from '../../api-adapter/index.js';
+import React, { useState } from "react";
+import { IndividualPostSubmissionDetail } from "..";
+import { postSubmission } from "../../api-adapter/index.js";
 
-function PostSubmission({setShowSubmissionPage, userToken}) {
+function PostSubmission({
+  setShowSubmissionPage,
+  userToken,
+  posts,
+  setPosts,
+}) {
   const defaultSubmissionDetails = {
-    title: '',
-    description: '',
-    price: '',
-    location: '',
+    title: "",
+    description: "",
+    price: "",
+    location: "",
     willDeliver: false,
-  }
+  };
 
-  const [submissionDetails, setSubmissionDetails] = useState(defaultSubmissionDetails)
+  const [submissionDetails, setSubmissionDetails] = useState(
+    defaultSubmissionDetails
+  );
 
-  function updateSubmission(key, value, submissionDetails, setSubmissionDetails) {
-    const submissionCopy = {...submissionDetails};
+  function updateSubmission(
+    key,
+    value,
+    submissionDetails,
+    setSubmissionDetails
+  ) {
+    const submissionCopy = { ...submissionDetails };
     submissionCopy[key] = value;
     setSubmissionDetails(submissionCopy);
   }
 
-  function onChangeDetail(evt, key) {
-    const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
+  async function handlePostRequest() {
+    const response = await postSubmission(submissionDetails, userToken);
+    
+    console.log('onSubmit response', response)
+    console.log('posts: ', posts , 'type of posts: ', Array.isArray(posts))
+    const post = response.data.post;
 
-    updateSubmission(key, value, submissionDetails, setSubmissionDetails)
+    if (response.success === true ) {
+      // setSubmissionDetails(defaultSubmissionDetails);
+      const postsClone = [...posts];
+      postsClone.push(post)
+
+      setPosts(postsClone)
+    }
+  }
+
+  function onChangeDetail(evt, key) {
+    const value =
+      evt.target.type === "checkbox" ? evt.target.checked : evt.target.value;
+
+    updateSubmission(key, value, submissionDetails, setSubmissionDetails);
   }
 
   function onClickClose() {
@@ -31,8 +60,7 @@ function PostSubmission({setShowSubmissionPage, userToken}) {
 
   function onSubmitPost(evt) {
     evt.preventDefault();
-    postSubmission(submissionDetails, userToken);
-    setSubmissionDetails(defaultSubmissionDetails);
+    handlePostRequest();
   }
 
   return (
@@ -84,9 +112,11 @@ function PostSubmission({setShowSubmissionPage, userToken}) {
           <input type="submit" value="Post" />
         </div>
       </form>
-      <button id="close-submission-page" onClick={onClickClose}>Close</button>
+      <button id="close-submission-page" onClick={onClickClose}>
+        Close
+      </button>
     </div>
-  )
+  );
 }
 
 export default PostSubmission;
