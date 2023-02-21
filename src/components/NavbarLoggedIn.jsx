@@ -6,7 +6,7 @@ function NavbarLoggedIn({userToken, setUserToken}) {
 
   function onClickLogout() {
     removeLocalStorageToken();
-    setUserToken('');
+    setUserToken(null);
   }
 
   return (

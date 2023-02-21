@@ -4,7 +4,7 @@ import { Navbar, Posts } from "./";
 import { checkLocalStorageToken } from '../utils';
 
 function Main() {
-  const [userToken, setUserToken] = useState("");
+  const [userToken, setUserToken] = useState(null);
 
   useEffect(() => {
     setUserToken(checkLocalStorageToken());
@@ -18,7 +18,7 @@ function Main() {
         setUserToken={setUserToken}
       />
       <Routes>
-        <Route exact path="/"
+        <Route path="/"
           element={<Posts 
             userToken={userToken}
             setUserToken={setUserToken}
