@@ -6,13 +6,13 @@ function Posts({ userToken }) {
   const [posts, setPosts] = useState([]);
   const [postFilter, setPostFilter] = useState("");
   const [showSubmissionPage, setShowSubmissionPage] = useState(false);
-  const [refreshPosts, setRefreshPosts] = useState(false);
 
   const callGetPosts = async () => {
     try {
-      const response = await getPosts();
+      const response = await getPosts(userToken);
       const posts = response.data.posts;
 
+      console.log(posts)
       setPosts(posts);
     } catch (error) {
       console.error(error);
@@ -21,10 +21,7 @@ function Posts({ userToken }) {
 
   useEffect(() => {
     callGetPosts();
-    if (refreshPosts) {
-      setRefreshPosts(false);
-    }
-  }, [refreshPosts]);
+  }, [userToken]);
 
   const onSearchChange = (evt) => {
     setPostFilter(evt.target.value.toLowerCase());

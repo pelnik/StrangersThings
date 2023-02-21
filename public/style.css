@@ -128,3 +128,10 @@
   flex-direction: column;
 }
 
+.my-post {
+  border: solid 2px red;
+}
+
+.my-post h3 {
+  color: red;
+}
