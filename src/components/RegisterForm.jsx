@@ -30,10 +30,14 @@ function RegisterForm({userToken, setUserToken, setLoggedInUserRegister}) {
     }
   }
 
-  if (userToken) {
-    navigate('/');
-    setLoggedInUserRegister(true);
+  useEffect(() => {
+    if (userToken) {
+      setLoggedInUserRegister(true);
+      navigate('/');
+    }
   }
+  , [userToken])
+
 
 
   function onChangeHandler(evt, setState) {

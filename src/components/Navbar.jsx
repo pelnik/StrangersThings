@@ -10,13 +10,15 @@ function Navbar({userToken, setUserToken}) {
     removeLocalStorageToken();
   }
 
-
+  function clearAlerts() {
+    setLoggedInUserRegister(false);
+  }
 
   return (
     <div id="Navbar">
       <div id="leftNavbar">
       </div>
-      <div id="rightNavbar">
+      <div id="rightNavbar" onClick={clearAlerts}>
         <>
           {
           loggedInUserRegister
