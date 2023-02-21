@@ -16,18 +16,33 @@ const IndividualPostSubmissionDetail = ({
   return (
     <div className="submissionDetail" id={id}>
       <label className="submissionLabel">{label}</label>
-      <input
-        type={propKey !== 'willDeliver' ? 'text' : 'checkbox'}
-        id={`${id}Input`}
-        name={`submissionPost${capitalKey}`}
-        required={required}
-        minLength={minLength}
-        className="submissionDetailInput"
-        value={submissionDetails[propKey]}
-        onChange={(evt) => {
-          onChangeDetail(evt, propKey);
-        }}
-      />
+      {
+        propKey === 'description'
+        ? <textarea
+          type={propKey !== 'willDeliver' ? 'text' : 'checkbox'}
+          id={`${id}Input`}
+          name={`submissionPost${capitalKey}`}
+          required={required}
+          minLength={minLength}
+          className="submissionDetailInput"
+          value={submissionDetails[propKey]}
+          onChange={(evt) => {
+            onChangeDetail(evt, propKey);
+          }}
+        />
+        : <input
+          type={propKey !== 'willDeliver' ? 'text' : 'checkbox'}
+          id={`${id}Input`}
+          name={`submissionPost${capitalKey}`}
+          required={required}
+          minLength={minLength}
+          className="submissionDetailInput"
+          value={submissionDetails[propKey]}
+          onChange={(evt) => {
+            onChangeDetail(evt, propKey);
+          }}
+        />
+      }
     </div>
   )
 }

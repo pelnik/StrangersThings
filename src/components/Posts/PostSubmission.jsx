@@ -32,17 +32,21 @@ function PostSubmission({
   }
 
   async function handlePostRequest() {
-    const response = await postSubmission(submissionDetails, userToken);
-    
+    try {
+      const response = await postSubmission(submissionDetails, userToken);
+      
 
-    const post = response.data.post;
+      const post = response.data.post;
 
-    if (response.success === true ) {
-      // setSubmissionDetails(defaultSubmissionDetails);
-      const postsClone = [...posts];
-      postsClone.push(post)
-
-      setPosts(postsClone)
+      if (response.success === true ) {
+        setSubmissionDetails(defaultSubmissionDetails);
+        
+        const postsClone = [...posts];
+        postsClone.push(post)
+        setPosts(postsClone)
+      }
+    } catch(err) {
+      console.error(err);
     }
   }
 
