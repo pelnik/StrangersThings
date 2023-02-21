@@ -18,18 +18,17 @@ function Main() {
         setUserToken={setUserToken}
       />
       <Routes>
-        <Route path="/"
-          element={<Posts 
-            userToken={userToken}
-            setUserToken={setUserToken}
-          />}
-        />
-        <Route path="/register"
-          element={<Posts 
-            userToken={userToken}
-            setUserToken={setUserToken}
-          />}
-        />
+        <Route path="/" element={<Posts 
+              userToken={userToken}
+              setUserToken={setUserToken}
+              />}>
+          <Route path="*"
+            element={<Posts 
+              userToken={userToken}
+              setUserToken={setUserToken}
+            />}
+          />
+        </Route>
       </Routes>
     </div>
   );

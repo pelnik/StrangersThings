@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RegisterForm, NavbarNotLoggedIn, NavbarLoggedIn } from './'
+import { RegisterForm, NavbarNotLoggedIn, NavbarLoggedIn, LoginForm } from './'
 import { removeLocalStorageToken } from '../utils';
 import { Routes, Route } from 'react-router-dom';
 
@@ -51,6 +51,15 @@ function Navbar({userToken, setUserToken}) {
           <Route
             path="/register"
             element={<RegisterForm
+              userToken={userToken}
+              setUserToken={setUserToken}
+              alert={alert}
+              setAlert={setAlert}
+            />}
+          />
+          <Route
+            path="/login"
+            element={<LoginForm
               userToken={userToken}
               setUserToken={setUserToken}
               alert={alert}
