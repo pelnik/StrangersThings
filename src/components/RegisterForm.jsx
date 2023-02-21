@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { register } from '../api-adapter';
 import { writeLocalStorageToken } from '../utils';
 
-function RegisterForm({userToken, setUserToken}) {
+function RegisterForm({userToken, setUserToken, setLoggedInUserRegister}) {
   const [typedUsername, setTypedUsername] = useState("");
   const [typedPassword, setTypedPassword] = useState("");
   const [typedConfirmPassword, setTypedConfirmPassword] = useState("");
@@ -28,6 +28,11 @@ function RegisterForm({userToken, setUserToken}) {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  if (userToken) {
+    navigate('/');
+    setLoggedInUserRegister(true);
   }
 
 
