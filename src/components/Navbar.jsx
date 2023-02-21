@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { RegisterForm, NavbarNotLoggedIn, NavbarLoggedIn, LoginForm } from './'
 import { removeLocalStorageToken } from '../utils';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 
 function Navbar({userToken, setUserToken}) {
   const [alert, setAlert] = useState({
@@ -25,6 +25,7 @@ function Navbar({userToken, setUserToken}) {
   return (
     <div id="Navbar">
       <div id="leftNavbar">
+        <Link to="/">Home</Link>
       </div>
       <div id="rightNavbar" onClick={clearAlerts}>
         <>
