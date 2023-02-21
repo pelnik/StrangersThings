@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { RegisterForm, NavbarNotLoggedIn, NavbarLoggedIn, LoginForm } from './'
-import { removeLocalStorageToken } from '../utils';
+import { RegisterForm, NavbarNotLoggedIn, NavbarLoggedIn, LoginForm } from '..'
+import { removeLocalStorageToken } from '../../utils';
 import { Routes, Route, Link } from 'react-router-dom';
 
 function Navbar({userToken, setUserToken}) {

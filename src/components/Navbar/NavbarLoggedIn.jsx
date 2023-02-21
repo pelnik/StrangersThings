@@ -1,5 +1,5 @@
 import React from 'react';
-import { removeLocalStorageToken } from'../utils';
+import { removeLocalStorageToken } from'../../utils';
 
 
 function NavbarLoggedIn({userToken, setUserToken}) {

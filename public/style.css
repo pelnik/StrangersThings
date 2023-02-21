@@ -22,8 +22,16 @@
   flex-wrap: nowrap;
 }
 
+#mainContent {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+
 #postPageContainer {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;

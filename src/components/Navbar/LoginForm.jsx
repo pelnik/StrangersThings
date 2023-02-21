@@ -1,35 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { register } from "../api-adapter";
-import { writeLocalStorageToken } from "../utils";
+import { login } from "../../api-adapter";
+import { writeLocalStorageToken } from "../../utils";
 
-function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
+function LoginForm({ userToken, setUserToken, alert, setAlert }) {
   const [typedUsername, setTypedUsername] = useState("");
   const [typedPassword, setTypedPassword] = useState("");
-  const [typedConfirmPassword, setTypedConfirmPassword] = useState("");
-  const [passwordNotMatching, setPasswordNotMatching] = useState(false);
+  const [wrongLogin, setWrongLogin] = useState(false);
 
   const navigate = useNavigate();
 
-  async function registerUserToken() {
+  async function loginUserToken() {
     try {
       const user = {
         username: typedUsername,
         password: typedPassword,
       };
 
-      const response = await register(user);
+      const response = await login(user);
       const success = response.success;
 
       if (success === false) {
-        if (response.error.name === "UserExists") {
-          setAlert({
-            ...alert,
-            userAlreadyRegistered: true,
-          });
-          navigate("/");
+        if (response.error.name === "InvalidCredentials") {
+          setWrongLogin(true);
         } else {
-          throw new Error("Unknown Register API failure. See console log.");
+          console.error(response)
         }
       } else if (success === true) {
         const token = response.data.token;
@@ -39,8 +34,7 @@ function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
         navigate("/");
       }
     } catch (error) {
-      console.log(response);
-      console.error(error);
+      console.error(error, response);
     }
   }
 
@@ -62,22 +56,25 @@ function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
     console.log(evt);
     evt.preventDefault();
 
-    if (typedPassword === typedConfirmPassword) {
-      registerUserToken();
+    loginUserToken();
 
-      setTypedUsername("");
-      setTypedPassword("");
-      setTypedConfirmPassword("");
-      setPasswordNotMatching(false);
-    } else {
-      setPasswordNotMatching(true);
-    }
+    setTypedUsername("");
+    setTypedPassword("");
+  }
+
+  function onClickParent() {
+    setWrongLogin(false);
   }
 
   return (
     userToken !== null
-      ? <p>You're already logged in!</p>
-      : <div id="loginFormParent">
+    ? <p>You're already logged in!</p>
+    : <div id="loginFormParent" onClick={onClickParent}>
+        {
+          wrongLogin
+          ? <p>Wrong username or password. Please try again.</p>
+          : null
+        }
         <form onSubmit={onSubmitHandler} id="loginFormContainer">
           <div id="loginUsernameContainer">
             <label>Username:</label>
@@ -107,30 +104,12 @@ function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
               }}
             />
           </div>
-          <div id="confirmPasswordContainer">
-            <label>Confirm Password:</label>
-            <input
-              type="text"
-              id="confirmPassword"
-              name="confirmPassword"
-              required="required"
-              value={typedConfirmPassword}
-              onChange={(evt) => {
-                onChangeHandler(evt, setTypedConfirmPassword);
-              }}
-            />
-          </div>
           <div id="loginSubmitContainer">
-            <input type="submit" value="Register" />
+            <input type="submit" value="Login" />
           </div>
-          {passwordNotMatching ? (
-            <p id="passwordNotMatching">
-              Please enter the same value in each password field
-            </p>
-          ) : null}
         </form>
       </div>
   );
 }
 
-export default RegisterForm;
+export default LoginForm;
