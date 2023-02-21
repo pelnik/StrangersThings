@@ -27,7 +27,7 @@ function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
             ...alert,
             userAlreadyRegistered: true,
           });
-          navigate("/");
+          navigate("/login");
         } else {
           throw new Error("Unknown Register API failure. See console log.");
         }
@@ -36,7 +36,7 @@ function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
 
         setUserToken(token);
         writeLocalStorageToken(token);
-        navigate("/");
+        navigate("/login");
       }
     } catch (error) {
       console.log(response);
@@ -50,7 +50,7 @@ function RegisterForm({ userToken, setUserToken, alert, setAlert }) {
         ...alert,
         userLoggedInRegister: true,
       });
-      navigate("/");
+      navigate("/login");
     }
   }, [userToken]);
 
