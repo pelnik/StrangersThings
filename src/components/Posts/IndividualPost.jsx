@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { deleteSubmission } from '../../api-adapter'
+import { PostMessageBox } from '..';
 
 
 const IndividualPost = ({postData, userToken, posts, setPosts}) => {
@@ -48,16 +49,23 @@ const IndividualPost = ({postData, userToken, posts, setPosts}) => {
 
 
   return (
-    <div className={className}>
-      <div className='individual-post'>
-        {myPostHeader}
-        <div>Post Title: {postData.title}</div>
-        <div>Post Description: {postData.description}</div>
-        <div>Post Price: {postData.price}</div>
-        <div>Post Author: {postData.author.username}</div>
-        <div>Will Deliver: {postData.willDeliver ? 'Yes' : 'No'}</div>
+    <div className="individual-post-container">
+      <div className={className}>
+        <div className='individual-post'>
+          {myPostHeader}
+          <div>Post Title: {postData.title}</div>
+          <div>Post Description: {postData.description}</div>
+          <div>Post Price: {postData.price}</div>
+          <div>Post Author: {postData.author.username}</div>
+          <div>Will Deliver: {postData.willDeliver ? 'Yes' : 'No'}</div>
+        </div>
+        {authUserPostInfo}
       </div>
-      {authUserPostInfo}
+      {
+        messageBox
+        ? <PostMessageBox />
+        : null
+      }
     </div>
   )
 }
