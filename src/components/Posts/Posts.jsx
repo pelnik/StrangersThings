@@ -7,6 +7,9 @@ function Posts({ userToken }) {
   const [posts, setPosts] = useState([]);
   const [postFilter, setPostFilter] = useState("");
   const [showSubmissionPage, setShowSubmissionPage] = useState(false);
+  const [myData, setMyData] = useState({
+    messages: [],
+  });
 
   const navigate = useNavigate();
 
@@ -22,8 +25,24 @@ function Posts({ userToken }) {
     }
   };
 
+  async function setMyDataApi(token) {
+    try {
+      if (token !== null) {
+        const result = await getMyData(token);
+
+        if (result.success === true) {
+          console.log('myData call; ' ,result.data)
+          setMyData(result.data);
+      }
+    }
+   } catch (error) {
+    console.error(error)
+   }
+  }
+
   useEffect(() => {
     callGetPosts();
+    setMyDataApi(userToken);
   }, [userToken]);
 
   const onSearchChange = (evt) => {
@@ -77,7 +96,7 @@ function Posts({ userToken }) {
   return (
     <div id="mainContent">
       <Routes>
-        <Route path="/profile" element={<Messages userToken={userToken} />} />
+        <Route path="/profile" element={<Messages userToken={userToken} myData={myData} />} />
         <Route path="*" element={null} />
       </Routes>
       <div id="postPageContainer">

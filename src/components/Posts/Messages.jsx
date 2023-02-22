@@ -1,31 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getMyData } from '../../api-adapter';
+import { useNavigate } from 'react-router-dom';
 
-function Messages({ userToken }) {
-  const [myData, setMyData] = useState({
-    messages: [],
-  });
+function Messages({ userToken, myData }) {
+  const navigate = useNavigate();
 
-  async function setMyDataApi(token) {
-    try {
-      if (token !== null) {
-        const result = await getMyData(token);
 
-        if (result.success === true) {
-          console.log('myData call; ' ,result.data)
-          setMyData(result.data);
-      }
-    }
-   } catch (error) {
-    console.error(error)
-   }
+  function onClickClose() {
+    navigate('/');
   }
-
-  useEffect(() => {
-    console.log('messages token', userToken)
-    setMyDataApi(userToken);
-  }
-  , [userToken])
 
   return (
     userToken
@@ -42,6 +24,7 @@ function Messages({ userToken }) {
           </div>
         })
       }
+      <button onClick={onClickClose}>Close</button>
     </div>
     : null
   )
