@@ -7,7 +7,6 @@ function Posts({ userToken }) {
   const [posts, setPosts] = useState([]);
   const [postFilter, setPostFilter] = useState("");
   const [showSubmissionPage, setShowSubmissionPage] = useState(false);
-  const [showMessagePage, setShowMessagePage] = useState(false);
 
   const navigate = useNavigate();
 
@@ -38,7 +37,6 @@ function Posts({ userToken }) {
 
   function onClickShowSubmission(setShowSubmissionPage) {
     setShowSubmissionPage(true);
-    setShowMessagePage(false);
   }
   
   function showSubmitButton(showSubmissionPage, token) {

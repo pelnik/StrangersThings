@@ -173,3 +173,13 @@
   flex-wrap: nowrap;
   justify-content: space-between;
 }
+
+#message-container {
+  padding: 20px;
+  flex: 0 0 300px;
+}
+
+.individual-message {
+  padding: 20px;
+  border: solid 1px black;
+}
