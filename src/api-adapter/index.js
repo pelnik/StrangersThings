@@ -105,3 +105,22 @@ export const deleteSubmission = async (id, token) => {
     console.error(error);
   }
 }
+
+export const getMyData = async (token) => {
+  try {
+    const response = await fetch(BASE_URL + `/users/me`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    const result = await response.json();
+
+    console.log(token)
+    console.log('my data', result)
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}

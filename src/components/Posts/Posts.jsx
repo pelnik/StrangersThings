@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getPosts } from "../../api-adapter";
+import { getPosts, getMyData } from "../../api-adapter";
 import { IndividualPost, PostSubmission } from "..";
 
 function Posts({ userToken }) {
@@ -31,6 +31,10 @@ function Posts({ userToken }) {
     setShowSubmissionPage(true);
   }
 
+  async function onClickGetMyData() {
+    const myData =  await getMyData(userToken);
+  }
+
   return (
     <div id="mainContent">
       <div id="postPageContainer">
@@ -50,6 +54,7 @@ function Posts({ userToken }) {
         ) : (
           <h2>Debug: Not Logged In</h2>
         )}
+        <div>Debug: Get data <button onClick={onClickGetMyData}>getMyData</button></div>
         <div id="searchContainer">
           <p>Search:</p>
           <input id="postFilter" onChange={onSearchChange}></input>
