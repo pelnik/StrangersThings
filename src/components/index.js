@@ -10,4 +10,5 @@ export { default as PostSubmission } from "./Posts/PostSubmission";
 export { default as IndividualPostSubmissionDetail } from "./Posts/IndividualPostSubmissionDetail";
 export { default as IndividualPost } from "./Posts/IndividualPost";
 export { default as PostMessageBox } from "./Posts/PostMessageBox";
+export { default as Messages } from "./Posts/Messages";
 

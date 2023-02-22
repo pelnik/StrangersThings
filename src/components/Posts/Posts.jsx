@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Routes, Route } from 'react-router-dom';
 import { getPosts, getMyData } from "../../api-adapter";
-import { IndividualPost, PostSubmission } from "..";
+import { IndividualPost, PostSubmission, Messages } from "..";
 
 function Posts({ userToken }) {
   const [posts, setPosts] = useState([]);
@@ -37,6 +38,10 @@ function Posts({ userToken }) {
 
   return (
     <div id="mainContent">
+      <Routes>
+        <Route path="/profile" element={<Messages />} />
+        <Route path="*" element={null} />
+      </Routes>
       <div id="postPageContainer">
         <h1 id="postHeader">Stranger's Things</h1>
         {!showSubmissionPage && userToken !== null 
