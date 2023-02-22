@@ -50,6 +50,12 @@
   right: 10px;
 }
 
+#show-message-page {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 #post-submission-parent {
   padding: 20px;
   display: flex;

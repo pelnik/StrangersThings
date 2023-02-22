@@ -1,5 +1,4 @@
 export { default as Main } from "./Main";
-export { default as Profile } from "./Profile";
 export { default as Navbar } from "./Navbar/Navbar";
 export { default as LoginForm } from "./Navbar/LoginForm";
 export { default as RegisterForm } from "./Navbar/RegisterForm";

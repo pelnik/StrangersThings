@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { getPosts, getMyData } from "../../api-adapter";
 import { IndividualPost, PostSubmission, Messages } from "..";
 
@@ -7,6 +7,9 @@ function Posts({ userToken }) {
   const [posts, setPosts] = useState([]);
   const [postFilter, setPostFilter] = useState("");
   const [showSubmissionPage, setShowSubmissionPage] = useState(false);
+  const [showMessagePage, setShowMessagePage] = useState(false);
+
+  const navigate = useNavigate();
 
   const callGetPosts = async () => {
     try {
@@ -28,24 +31,20 @@ function Posts({ userToken }) {
     setPostFilter(evt.target.value.toLowerCase());
   };
 
-  function onClickShowSubmission(setShowSubmissionPage) {
-    setShowSubmissionPage(true);
-  }
-
+  
   async function onClickGetMyData() {
     const myData =  await getMyData(userToken);
   }
 
-  return (
-    <div id="mainContent">
-      <Routes>
-        <Route path="/profile" element={<Messages />} />
-        <Route path="*" element={null} />
-      </Routes>
-      <div id="postPageContainer">
-        <h1 id="postHeader">Stranger's Things</h1>
-        {!showSubmissionPage && userToken !== null 
-        ? <button
+  function onClickShowSubmission(setShowSubmissionPage) {
+    setShowSubmissionPage(true);
+    setShowMessagePage(false);
+  }
+  
+  function showSubmitButton(showSubmissionPage, token) {
+    if (!showSubmissionPage && token !== null) {
+      return (
+        <button
             id="show-submission-page"
             onClick={() => {
               onClickShowSubmission(setShowSubmissionPage);
@@ -53,7 +52,45 @@ function Posts({ userToken }) {
           >
             Submit a post!
           </button>
-        : null}
+      )
+    }
+
+    return null;
+  }
+
+
+  function showMessagesButton(token) {
+    if (token !== null) {
+      return (
+        <button
+            id="show-message-page"
+            onClick={() => {
+              navigate('/profile')
+            }}
+          >
+            Profile
+          </button>
+      )
+    }
+
+    return null;
+  }
+
+  return (
+    <div id="mainContent">
+      <Routes>
+        <Route path="/profile" element={<Messages userToken={userToken} />} />
+        <Route path="*" element={null} />
+      </Routes>
+      <div id="postPageContainer">
+        <h1 id="postHeader">Stranger's Things</h1>
+        {showSubmitButton(showSubmissionPage, userToken)}
+        {
+          <Routes>
+            <Route path="/profile" element={null} />
+            <Route path="*" element={showMessagesButton()} />
+          </Routes>
+        }
         {userToken ? (
           <h2>Debug: User is Logged In</h2>
         ) : (

@@ -9,10 +9,14 @@ function PostMessageBox({ userToken, postData }) {
     setMessage(evt.target.value);
   }
 
-  function onSubmit(evt) {
+  async function onSubmit(evt) {
     evt.preventDefault();
-    postMessages(userToken, postData._id, message);
-    setMessage('');
+    const response = await postMessages(userToken, postData._id, message);
+
+
+    if (response.success === true) {
+      setMessage('');
+    }
   }
 
   return (

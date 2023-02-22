@@ -1,8 +1,10 @@
 import React from 'react';
 
-function Messages() {
+function Messages({ userToken }) {
   return (
-    <div>Test</div>
+    userToken
+    ? <div>Test</div>
+    : null
   )
 }
 
