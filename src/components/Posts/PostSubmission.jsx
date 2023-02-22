@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { IndividualPostSubmissionDetail } from "..";
 import { postSubmission } from "../../api-adapter/index.js";
 
 function PostSubmission({
-  setShowSubmissionPage,
   userToken,
   posts,
   setPosts,
@@ -19,6 +19,8 @@ function PostSubmission({
   const [submissionDetails, setSubmissionDetails] = useState(
     defaultSubmissionDetails
   );
+
+  const navigate = useNavigate();
 
   function updateSubmission(
     key,
@@ -58,7 +60,7 @@ function PostSubmission({
   }
 
   function onClickClose() {
-    setShowSubmissionPage(false);
+    navigate('/');
   }
 
   function onSubmitPost(evt) {
@@ -67,7 +69,9 @@ function PostSubmission({
   }
 
   return (
-    <div id="post-submission-parent">
+    userToken === null
+    ? null
+    : <div id="post-submission-parent">
       <h1> Enter details of your post below: </h1>
       <form id="postSubmissionForm" onSubmit={onSubmitPost}>
         {/* Using a child because HTML was a little too messy */}

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { getPosts, getMyData } from "../../api-adapter";
 import { IndividualPost, PostSubmission, Messages } from "..";
 
 function Posts({ userToken }) {
   const [posts, setPosts] = useState([]);
   const [postFilter, setPostFilter] = useState("");
-  const [showSubmissionPage, setShowSubmissionPage] = useState(false);
   const [myData, setMyData] = useState({
     messages: [],
   });
@@ -18,7 +17,6 @@ function Posts({ userToken }) {
       const response = await getPosts(userToken);
       const posts = response.data.posts;
 
-      console.log(posts)
       setPosts(posts);
     } catch (error) {
       console.error(error);
@@ -31,13 +29,12 @@ function Posts({ userToken }) {
         const result = await getMyData(token);
 
         if (result.success === true) {
-          console.log('myData call; ' ,result.data)
           setMyData(result.data);
+        }
       }
+    } catch (error) {
+      console.error(error);
     }
-   } catch (error) {
-    console.error(error)
-   }
   }
 
   useEffect(() => {
@@ -49,45 +46,43 @@ function Posts({ userToken }) {
     setPostFilter(evt.target.value.toLowerCase());
   };
 
-  
   async function onClickGetMyData() {
-    const myData =  await getMyData(userToken);
+    const myData = await getMyData(userToken);
   }
 
-  function onClickShowSubmission(setShowSubmissionPage) {
-    setShowSubmissionPage(true);
+  function onClickShowSubmission() {
+    navigate('/submit')
   }
-  
-  function showSubmitButton(showSubmissionPage, token) {
-    if (!showSubmissionPage && token !== null) {
+
+  function showSubmitButton(token) {
+    if (token !== null) {
       return (
         <button
-            id="show-submission-page"
-            onClick={() => {
-              onClickShowSubmission(setShowSubmissionPage);
-            }}
-          >
-            Submit a post!
-          </button>
-      )
+          id="show-submission-page"
+          onClick={() => {
+            onClickShowSubmission();
+          }}
+        >
+          Submit a post!
+        </button>
+      );
     }
 
     return null;
   }
 
-
   function showMessagesButton(token) {
     if (token !== null) {
       return (
         <button
-            id="show-message-page"
-            onClick={() => {
-              navigate('/profile')
-            }}
-          >
-            Profile
-          </button>
-      )
+          id="show-message-page"
+          onClick={() => {
+            navigate("/profile");
+          }}
+        >
+          Profile
+        </button>
+      );
     }
 
     return null;
@@ -96,12 +91,23 @@ function Posts({ userToken }) {
   return (
     <div id="mainContent">
       <Routes>
-        <Route path="/profile" element={<Messages userToken={userToken} myData={myData} />} />
+        <Route
+          path="/profile"
+          element={<Messages userToken={userToken} myData={myData} />}
+        />
+        <Route
+          path="/submit"
+          element={<PostSubmission
+            userToken={userToken}
+            posts={posts}
+            setPosts={setPosts}
+          />}
+        />
         <Route path="*" element={null} />
       </Routes>
       <div id="post-page-container">
         <h1 id="post-header">Stranger's Things</h1>
-        {showSubmitButton(showSubmissionPage, userToken)}
+        {showSubmitButton(userToken)}
         {
           <Routes>
             <Route path="/profile" element={null} />
@@ -113,7 +119,9 @@ function Posts({ userToken }) {
         ) : (
           <h2>Debug: Not Logged In</h2>
         )}
-        <div>Debug: Get data <button onClick={onClickGetMyData}>getMyData</button></div>
+        <div>
+          Debug: Get data <button onClick={onClickGetMyData}>getMyData</button>
+        </div>
         <div id="searchContainer">
           <p>Search:</p>
           <input id="postFilter" onChange={onSearchChange}></input>
@@ -142,14 +150,6 @@ function Posts({ userToken }) {
             })}
         </div>
       </div>
-      {showSubmissionPage && userToken !== null
-      ? <PostSubmission
-          setShowSubmissionPage={setShowSubmissionPage}
-          userToken={userToken}
-          posts={posts}
-          setPosts={setPosts}
-        />
-      : null}
     </div>
   );
 }

@@ -58,7 +58,7 @@ body {
 #mainContent {
   display: grid;
   grid-template-rows: minmax(0, 1fr);
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto;
 
   min-height: 0;
   grid-row: 2;
@@ -102,7 +102,7 @@ body {
   flex-direction: column;
 
   grid-row: 1;
-  grid-column: 3;
+  grid-column: 2;
   width: 30vw;
 }
 
@@ -219,7 +219,7 @@ body {
 
 #message-container {
   padding: 20px;
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 1;
 }
 

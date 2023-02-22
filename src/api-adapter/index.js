@@ -10,7 +10,6 @@ export const getPosts = async (token) => {
       headers.Authorization = `Bearer ${token}`;
     }
     
-    console.log(headers, 'headers', token, 'token')
 
     const response = await fetch(BASE_URL + '/posts', {
       method: 'GET',
@@ -99,7 +98,6 @@ export const deleteSubmission = async (id, token) => {
     })
     const result = await response.json();
 
-    console.log(result)
     return result;
   } catch (error) {
     console.error(error);
@@ -117,7 +115,6 @@ export const getMyData = async (token) => {
     })
     const result = await response.json();
 
-    console.log(result)
     return result;
   } catch (error) {
     console.error(error);
