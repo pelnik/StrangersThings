@@ -117,8 +117,32 @@ export const getMyData = async (token) => {
     })
     const result = await response.json();
 
-    console.log(token)
-    console.log('my data', result)
+    console.log(result)
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+export const postMessages = async (token, post_id, content) => {
+  try {
+    const response = await fetch(BASE_URL + `/posts/${post_id}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        message: {
+          content: content
+        }
+      })
+    })
+    const result = await response.json();
+
+ 
+    console.log('post message result', result)
     return result;
   } catch (error) {
     console.error(error);

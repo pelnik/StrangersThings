@@ -34,12 +34,14 @@ const IndividualPost = ({postData, userToken, posts, setPosts}) => {
       return null;
     }
 
+    
     if (token !== null && isAuthor) {
       return <button id="my-post-delete" onClick={onClickDelete}>Delete</button>;
     } else if (token !== null && !isAuthor) {
       return <button id="send-message" onClick={onClickOpenMessage}>Send Message</button>
     }
   }
+  
 
 
   const authUserPostInfo = authUserPostArea(userToken, postData.isAuthor);
@@ -63,7 +65,7 @@ const IndividualPost = ({postData, userToken, posts, setPosts}) => {
       </div>
       {
         messageBox
-        ? <PostMessageBox />
+        ? <PostMessageBox userToken={userToken} postData={postData} />
         : null
       }
     </div>
