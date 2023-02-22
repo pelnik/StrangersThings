@@ -12,7 +12,6 @@ function NavbarLoggedIn({userToken, setUserToken}) {
   return (
     <div id="navbarLoggedIn">
       <button onClick={onClickLogout}>Log out!</button>
-      <button>Profile</button>
     </div>
   )
 }

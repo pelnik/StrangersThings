@@ -99,8 +99,8 @@ function Posts({ userToken }) {
         <Route path="/profile" element={<Messages userToken={userToken} myData={myData} />} />
         <Route path="*" element={null} />
       </Routes>
-      <div id="postPageContainer">
-        <h1 id="postHeader">Stranger's Things</h1>
+      <div id="post-page-container">
+        <h1 id="post-header">Stranger's Things</h1>
         {showSubmitButton(showSubmissionPage, userToken)}
         {
           <Routes>
