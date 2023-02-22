@@ -145,3 +145,29 @@ export const postMessages = async (token, post_id, content) => {
     console.error(error);
   }
 }
+
+export const IndividualPost = async (postData, userToken, posts, setPosts) => {
+  try {
+    const response = await fetch (`${BASE_URL}/posts/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        posts: {
+          title: title, 
+          description: description,
+          price: price,
+        },
+    }),
+  });
+
+  const result = await response.json();
+  console.log(result);
+} catch (error) {
+  console.log ;{
+    console.log(error);
+  }
+}
+}
