@@ -224,7 +224,7 @@ body {
 #loginFormParent {
   display: flex;
   flex-direction: row;
-  flex-wrap:wrap;
+  flex-wrap: nowrap;
   gap: 15px;
   justify-content: flex-end;
 }
@@ -368,7 +368,7 @@ body {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   #loginFormContainer {
     flex-direction: column;
   }

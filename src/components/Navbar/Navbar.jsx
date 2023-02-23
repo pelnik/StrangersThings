@@ -11,6 +11,7 @@ function Navbar({ userToken, setUserToken, setPostFilter }) {
   });
 
   const inputRef = useRef(null);
+  const iconFill = "#FFFFF"
 
   function clearAlerts() {
     const alertCopy = { ...alert };
@@ -44,7 +45,7 @@ function Navbar({ userToken, setUserToken, setPostFilter }) {
       <div id="leftNavbar">
         <Link to="/">
           <div className="icon-wrapper">
-            <HomeSVG />
+            <HomeSVG fill="#FFFFFF" />
             <p>Home</p>
           </div>
         </Link>
@@ -99,7 +100,7 @@ function Navbar({ userToken, setUserToken, setPostFilter }) {
                   setUserToken={setUserToken}
                 />
               ) : (
-                <NavbarNotLoggedIn />
+                <NavbarNotLoggedIn iconFill={iconFill}/>
               )
             }
           />

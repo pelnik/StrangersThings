@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { LoginSVG, RegisterSVG } from '../../Media'
 
 
-function NavbarNotLoggedIn() {
+function NavbarNotLoggedIn({iconFill}) {
   const navigate = useNavigate();
   
   function onClickRegister() {
@@ -19,7 +19,7 @@ function NavbarNotLoggedIn() {
     <div id="navbar-not-logged-in">
       <button onClick={onClickRegister} className="navbar-icons">
         <div className="icon-wrapper">
-          <RegisterSVG height="100%" width="100%" />
+          <RegisterSVG fill={iconFill} height="100%" width="100%" />
           <p>Register</p>
         </div>
       </button>
