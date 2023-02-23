@@ -92,10 +92,11 @@ function LoginForm({ userToken, setUserToken, alert, setAlert }) {
           <div id="loginPasswordContainer">
             <label>Password:</label>
             <input
-              type="text"
+              type="password"
               id="loginPassword"
               name="loginPassword"
               required="required"
+              autoComplete="on"
               value={typedPassword}
               minLength="8"
               onChange={(evt) => {

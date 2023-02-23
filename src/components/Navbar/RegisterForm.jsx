@@ -96,10 +96,11 @@ function RegisterForm({ userToken, alert, setAlert }) {
           <div id="loginPasswordContainer">
             <label>Password:</label>
             <input
-              type="text"
+              type="password"
               id="loginPassword"
               name="loginPassword"
               required="required"
+              autoComplete="on"
               value={typedPassword}
               minLength="8"
               onChange={(evt) => {
@@ -110,10 +111,11 @@ function RegisterForm({ userToken, alert, setAlert }) {
           <div id="confirmPasswordContainer">
             <label>Confirm Password:</label>
             <input
-              type="text"
+              type="password"
               id="confirmPassword"
               name="confirmPassword"
               required="required"
+              autoComplete="on"
               value={typedConfirmPassword}
               onChange={(evt) => {
                 onChangeHandler(evt, setTypedConfirmPassword);

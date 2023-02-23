@@ -36,6 +36,12 @@ body {
   height: 100vh;
 }
 
+.generic-flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
 #main {
   display: grid;
   grid-template-rows: auto 1fr;
@@ -53,6 +59,7 @@ body {
   align-items: center;
   grid-row: 1;
   grid-column: 1;
+  height: 4rem;
 }
 
 
@@ -94,6 +101,11 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 10px;
+}
+
+#navbar-logged-in {
+  gap: 20px;
+  align-items: center;
 }
 
 #mainContent {
