@@ -1,14 +1,16 @@
 import React from 'react';
-import { Link } from'react-router-dom';
+import { Link, useNavigate } from'react-router-dom';
 import { removeLocalStorageToken } from'../../utils';
 import { LogoutSVG, MessageSVG, ComposeSVG } from '../../Media';
 
 
 function NavbarLoggedIn({setUserToken}) {
+  const navigate = useNavigate();
 
   function onClickLogout() {
     removeLocalStorageToken();
     setUserToken(null);
+    navigate('/');
   }
 
   return (

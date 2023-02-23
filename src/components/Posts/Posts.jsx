@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { getPosts, getMyData } from "../../api-adapter";
 import { IndividualPost, PostSubmission, Messages } from "..";
 
@@ -9,8 +9,6 @@ function Posts({ userToken }) {
   const [myData, setMyData] = useState({
     messages: [],
   });
-
-  const navigate = useNavigate();
 
   const callGetPosts = async () => {
     try {
@@ -46,48 +44,6 @@ function Posts({ userToken }) {
     setPostFilter(evt.target.value.toLowerCase());
   };
 
-  async function onClickGetMyData() {
-    const myData = await getMyData(userToken);
-  }
-
-  function onClickShowSubmission() {
-    navigate('/submit')
-  }
-
-  function showSubmitButton(token) {
-    if (token !== null) {
-      return (
-        <button
-          id="show-submission-page"
-          onClick={() => {
-            onClickShowSubmission();
-          }}
-        >
-          Submit a post!
-        </button>
-      );
-    }
-
-    return null;
-  }
-
-  function showMessagesButton(token) {
-    if (token !== null) {
-      return (
-        <button
-          id="show-message-page"
-          onClick={() => {
-            navigate("/profile");
-          }}
-        >
-          Profile
-        </button>
-      );
-    }
-
-    return null;
-  }
-
   return (
     <div id="mainContent">
       <Routes>
@@ -107,21 +63,6 @@ function Posts({ userToken }) {
       </Routes>
       <div id="post-page-container">
         <h1 id="post-header">Stranger's Things</h1>
-        {showSubmitButton(userToken)}
-        {
-          <Routes>
-            <Route path="/profile" element={null} />
-            <Route path="*" element={showMessagesButton(userToken)} />
-          </Routes>
-        }
-        {userToken ? (
-          <h2>Debug: User is Logged In</h2>
-        ) : (
-          <h2>Debug: Not Logged In</h2>
-        )}
-        <div>
-          Debug: Get data <button onClick={onClickGetMyData}>getMyData</button>
-        </div>
         <div id="searchContainer">
           <p>Search:</p>
           <input id="postFilter" onChange={onSearchChange}></input>
