@@ -1,9 +1,9 @@
 import React from 'react';
 import { removeLocalStorageToken } from'../../utils';
-import {LogoutSVG} from '../../Media';
+import { LogoutSVG } from '../../Media';
 
 
-function NavbarLoggedIn({userToken, setUserToken}) {
+function NavbarLoggedIn({setUserToken}) {
 
   function onClickLogout() {
     removeLocalStorageToken();

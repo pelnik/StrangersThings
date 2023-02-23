@@ -34,7 +34,7 @@ function Navbar({ userToken, setUserToken }) {
   }
 
   return (
-    <div id="Navbar">
+    <div id="Navbar">Í
       <div id="leftNavbar">
         <Link to="/" className="navbar-icons"><HomeSVG /></Link>
       </div>
@@ -46,7 +46,6 @@ function Navbar({ userToken, setUserToken }) {
             element={
               userToken ? (
                 <NavbarLoggedIn
-                  userToken={userToken}
                   setUserToken={setUserToken}
                 />
               ) : (

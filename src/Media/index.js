@@ -1,2 +1,6 @@
-export {default as HomeSVG } from './homeReact'
-export {default as LogoutSVG } from './logout'
+export {default as HomeSVG } from './HomeSVG'
+export {default as LogoutSVG } from './LogoutSVG'
+export {default as LoginSVG } from './LoginSVG'
+export {default as ComposeSVG } from './ComposeSVG'
+export {default as MessageSVG } from './MessageSVG'
+export {default as RegisterSVG } from './RegisterSVG'
