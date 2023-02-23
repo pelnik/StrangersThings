@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { getPosts, getMyData } from "../../api-adapter";
 import { IndividualPost, PostSubmission, Messages } from "..";
+import { Logo } from "../../Media";
 
 function Posts({ userToken }) {
   const [posts, setPosts] = useState([]);
@@ -62,7 +63,10 @@ function Posts({ userToken }) {
         <Route path="*" element={null} />
       </Routes>
       <div id="post-page-container">
-        <h1 id="post-header">Stranger's Things</h1>
+        <div className="generic-flex-row" id="post-header-container">
+          <Logo height="100%"/>
+          <h1 id="post-header">Stranger's Things</h1>
+        </div>
         <div id="searchContainer">
           <p>Search:</p>
           <input id="postFilter" onChange={onSearchChange}></input>

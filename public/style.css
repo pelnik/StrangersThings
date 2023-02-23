@@ -2,12 +2,14 @@
   --lightYellow: #FAF7E1;
   --blue: #99D1FF;
   --lightPink: #F3C8F7;
+  --darkBlue: #90C5F0;
 }
 
 * {
   margin: 0;
   box-sizing: border-box;
   /* border: solid black 1px; */
+  border-radius: 5px;
 }
 
 
@@ -135,13 +137,22 @@ body {
   overflow: scroll;
 
   min-height: 0;
+  padding: 20px;
   grid-row: 1;
   grid-template-columns: 2;
 }
 
+#post-header-container {
+  height: 4rem;
+  gap: 10px;
+  color: var(--blue)
+}
+
 #post-header {
   text-align: center;
+  font-size: 3rem;
 }
+
 
 #show-submission-page {
   position: absolute;
@@ -201,6 +212,8 @@ body {
   justify-content: center;
 }
 
+
+
 #searchContainer {
   display: flex;
   flex-direction: row;
@@ -247,7 +260,7 @@ body {
 
   flex-grow: 0;
   padding: 20px;
-  border: solid 1px black;
+  border: solid 1px var(--darkBlue);
 }
 
 .individual-post-content {
