@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { login } from "../../api-adapter";
 import { writeLocalStorageToken } from "../../utils";
 
@@ -68,13 +68,13 @@ function LoginForm({ userToken, setUserToken, alert, setAlert }) {
   return (
     userToken !== null
     ? <p>You're already logged in!</p>
-    : <div id="loginFormParent" onClick={onClickParent}>
+    : <div className="login-input-container" id="loginFormParent" onClick={onClickParent}>
         {
           wrongLogin
           ? <p>Wrong username or password. Please try again.</p>
           : null
         }
-        <form onSubmit={onSubmitHandler} id="loginFormContainer">
+        <form className="login-input-container" onSubmit={onSubmitHandler} id="loginFormContainer">
           <div id="loginUsernameContainer">
             <label>Username:</label>
             <input
@@ -89,7 +89,7 @@ function LoginForm({ userToken, setUserToken, alert, setAlert }) {
               }}
             />
           </div>
-          <div id="loginPasswordContainer">
+          <div className="login-input-container" id="loginPasswordContainer">
             <label>Password:</label>
             <input
               type="password"
@@ -108,6 +108,7 @@ function LoginForm({ userToken, setUserToken, alert, setAlert }) {
             <input type="submit" value="Login" />
           </div>
         </form>
+        <Link to='/'><p id="header-x">x</p></Link>
       </div>
   );
 }

@@ -22,6 +22,13 @@ button, a {
   display: block;
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
+}
+
+a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 svg {
@@ -49,6 +56,7 @@ body {
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
   height: 100vh;
+  width: 100vw;
 }
 
 
@@ -61,7 +69,7 @@ body {
   align-items: center;
   grid-row: 1;
   grid-column: 1;
-  height: 4rem;
+  min-height: 4rem;
 }
 
 
@@ -77,6 +85,7 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 20px;
+  min-width: 0;
 }
 
 .navbar-icons {
@@ -193,23 +202,39 @@ body {
   height: 5rem;
 }
 
+
+.login-input-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-shrink: 1;
+}
+
 #loginFormParent {
   display: flex;
   flex-direction: row;
+  flex-wrap:wrap;
   gap: 15px;
+  justify-content: flex-end;
 }
 
 #loginFormContainer {
   display: flex;
   gap: 20px;
+  flex-direction: row;
 }
 
 #loginSubmitContainer {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+}
+
+#header-x {
+  font-size: 1rem;
 }
 
 
@@ -329,4 +354,11 @@ body {
 .individual-message {
   padding: 20px;
   border: solid 1px black;
+}
+
+
+@media (max-width: 768px) {
+  #loginFormContainer {
+    flex-direction: column;
+  }
 }

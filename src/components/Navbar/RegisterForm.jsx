@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { register } from "../../api-adapter";
-import { writeLocalStorageToken } from "../../utils";
 
 function RegisterForm({ userToken, alert, setAlert }) {
   const [typedUsername, setTypedUsername] = useState("");
@@ -78,8 +77,13 @@ function RegisterForm({ userToken, alert, setAlert }) {
     userToken !== null
       ? <p>You're already logged in!</p>
       : <div id="loginFormParent">
+        {passwordNotMatching ? (
+          <p id="passwordNotMatching">
+            Please enter the same value in each password field
+          </p>
+        ) : null}
         <form onSubmit={onSubmitHandler} id="loginFormContainer">
-          <div id="loginUsernameContainer">
+          <div className="login-input-container" id="loginUsernameContainer">
             <label>Username:</label>
             <input
               type="text"
@@ -93,7 +97,7 @@ function RegisterForm({ userToken, alert, setAlert }) {
               }}
             />
           </div>
-          <div id="loginPasswordContainer">
+          <div className="login-input-container" id="loginPasswordContainer">
             <label>Password:</label>
             <input
               type="password"
@@ -108,7 +112,7 @@ function RegisterForm({ userToken, alert, setAlert }) {
               }}
             />
           </div>
-          <div id="confirmPasswordContainer">
+          <div className="login-input-container" id="confirmPasswordContainer">
             <label>Confirm Password:</label>
             <input
               type="password"
@@ -122,15 +126,11 @@ function RegisterForm({ userToken, alert, setAlert }) {
               }}
             />
           </div>
-          <div id="loginSubmitContainer">
+          <div className="login-input-container" id="loginSubmitContainer">
             <input type="submit" value="Register" />
           </div>
-          {passwordNotMatching ? (
-            <p id="passwordNotMatching">
-              Please enter the same value in each password field
-            </p>
-          ) : null}
         </form>
+        <Link to='/'><p id="header-x">x</p></Link>
       </div>
   );
 }
