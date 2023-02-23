@@ -1,5 +1,6 @@
 import React from 'react';
 import { removeLocalStorageToken } from'../../utils';
+import {LogoutSVG} from '../../Media';
 
 
 function NavbarLoggedIn({userToken, setUserToken}) {
@@ -11,7 +12,7 @@ function NavbarLoggedIn({userToken, setUserToken}) {
 
   return (
     <div id="navbarLoggedIn">
-      <button onClick={onClickLogout}>Log out!</button>
+      <button onClick={onClickLogout} className="navbar-icons"><LogoutSVG /></button>
     </div>
   )
 }

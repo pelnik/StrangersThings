@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { RegisterForm, NavbarNotLoggedIn, NavbarLoggedIn, LoginForm } from "..";
-import { removeLocalStorageToken } from "../../utils";
 import { Routes, Route, Link } from "react-router-dom";
+import { RegisterForm, NavbarNotLoggedIn, NavbarLoggedIn, LoginForm } from "..";
+import { HomeSVG } from '../../Media';
 
 function Navbar({ userToken, setUserToken }) {
   const [alert, setAlert] = useState({
@@ -9,10 +9,6 @@ function Navbar({ userToken, setUserToken }) {
     userAlreadyRegistered: false,
     userJustRegistered: false,
   });
-
-  function onClickLogOut() {
-    removeLocalStorageToken();
-  }
 
   function clearAlerts() {
     const alertCopy = { ...alert };
@@ -40,7 +36,7 @@ function Navbar({ userToken, setUserToken }) {
   return (
     <div id="Navbar">
       <div id="leftNavbar">
-        <Link to="/">Home</Link>
+        <Link to="/" className="navbar-icons"><HomeSVG /></Link>
       </div>
       <div id="rightNavbar" onClick={clearAlerts}>
         {returnAlertElement(alert)}
