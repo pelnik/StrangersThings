@@ -72,12 +72,18 @@ body {
   min-height: 4rem;
 }
 
+#Navbar input {
+  border: none;
+  background-color: white;
+}
+
 
 
 #leftNavbar {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 20px;
 }
 
 #rightNavbar {
@@ -124,6 +130,10 @@ body {
 
 #logged-in-actions {
   gap: 10px;
+}
+
+#postFilter:focus {
+  outline: none;
 }
 
 #mainContent {
@@ -243,7 +253,8 @@ body {
   display: flex;
   flex-direction: row;
   gap: 15px;
-
+  height: 1.5rem;
+  background-color: white;
 }
 
 #searchContainer {

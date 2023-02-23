@@ -5,22 +5,33 @@ import { checkLocalStorageToken } from "../utils";
 
 function Main() {
   const [userToken, setUserToken] = useState(null);
+  const [postFilter, setPostFilter] = useState("");
 
   useEffect(() => {
     setUserToken(checkLocalStorageToken());
   }, []);
 
   useEffect(() => {
-    console.log('current token', userToken);
+    console.log("current token", userToken);
   }, [userToken]);
-  
+
   return (
     <div id="main">
-      <Navbar userToken={userToken} setUserToken={setUserToken} />
+      <Navbar
+        userToken={userToken}
+        setUserToken={setUserToken}
+        setPostFilter={setPostFilter}
+      />
       <Routes>
         <Route
           path="*"
-          element={<Posts userToken={userToken} setUserToken={setUserToken} />}
+          element={
+            <Posts
+              userToken={userToken}
+              setUserToken={setUserToken}
+              postFilter={postFilter}
+            />
+          }
         />
       </Routes>
     </div>

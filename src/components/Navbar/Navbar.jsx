@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { RegisterForm, NavbarNotLoggedIn, NavbarLoggedIn, LoginForm } from "..";
-import { HomeSVG } from '../../Media';
+import { HomeSVG, Search } from '../../Media';
 
-function Navbar({ userToken, setUserToken }) {
+function Navbar({ userToken, setUserToken, setPostFilter }) {
   const [alert, setAlert] = useState({
     userLoggedInRegister: false,
     userAlreadyRegistered: false,
     userJustRegistered: false,
   });
+
+  const inputRef = useRef(null);
 
   function clearAlerts() {
     const alertCopy = { ...alert };
@@ -18,6 +20,10 @@ function Navbar({ userToken, setUserToken }) {
 
     setAlert(alertCopy);
   }
+
+  const onSearchChange = (evt) => {
+    setPostFilter(evt.target.value.toLowerCase());
+  };
 
   function returnAlertElement(alert) {
     if (alert.userLoggedInRegister) {
@@ -42,6 +48,10 @@ function Navbar({ userToken, setUserToken }) {
             <p>Home</p>
           </div>
         </Link>
+        <div id="searchContainer" onClick={() => {inputRef.current.focus()}}>
+          <Search fill="#99D1FF" height="100%" />
+          <input type="search" id="postFilter" onChange={onSearchChange} ref={inputRef}></input>
+        </div>
       </div>
       <div id="rightNavbar" onClick={clearAlerts}>
         {returnAlertElement(alert)}

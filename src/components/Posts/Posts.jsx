@@ -4,9 +4,8 @@ import { getPosts, getMyData } from "../../api-adapter";
 import { IndividualPost, PostSubmission, Messages } from "..";
 import { Logo } from "../../Media";
 
-function Posts({ userToken }) {
+function Posts({ userToken, postFilter }) {
   const [posts, setPosts] = useState([]);
-  const [postFilter, setPostFilter] = useState("");
   const [myData, setMyData] = useState({
     messages: [],
   });
@@ -41,10 +40,6 @@ function Posts({ userToken }) {
     setMyDataApi(userToken);
   }, [userToken]);
 
-  const onSearchChange = (evt) => {
-    setPostFilter(evt.target.value.toLowerCase());
-  };
-
   return (
     <div id="mainContent">
       <Routes>
@@ -66,10 +61,6 @@ function Posts({ userToken }) {
         <div className="generic-flex-row" id="post-header-container">
           <Logo height="100%"/>
           <h1 id="post-header">Stranger's Things</h1>
-        </div>
-        <div id="searchContainer">
-          <p>Search:</p>
-          <input id="postFilter" onChange={onSearchChange}></input>
         </div>
         <div id="all-posts-plus-attribution">
           <div id="all-posts">
