@@ -17,16 +17,16 @@ function NavbarNotLoggedIn() {
 
   return (
     <div id="navbar-not-logged-in">
-      <button onClick={onClickLogin} className="navbar-icons">
-        <div className="icon-wrapper">
-          <LoginSVG />
-          <p>Login</p>
-        </div>
-      </button>
       <button onClick={onClickRegister} className="navbar-icons">
         <div className="icon-wrapper">
           <RegisterSVG height="100%" width="100%" />
           <p>Register</p>
+        </div>
+      </button>
+      <button onClick={onClickLogin} className="navbar-icons">
+        <div className="icon-wrapper">
+          <LoginSVG />
+          <p>Login</p>
         </div>
       </button>
     </div>

@@ -214,6 +214,15 @@ body {
   gap: 15px;
 }
 
+#all-posts-plus-attribution {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+  align-items: center;
+  gap: 50px;
+}
+
 #all-posts {
   display: flex;
   flex-direction: row;
@@ -223,7 +232,12 @@ body {
   justify-content:space-evenly;
   margin-left: auto;
   margin-right: auto;
-  overflow-y: scroll;
+}
+
+#attribution {
+  font-size: 0.75rem;
+  width: 30%;
+  text-align: center;
 }
 
 .individual-post-container {
@@ -302,8 +316,4 @@ body {
 .individual-message {
   padding: 20px;
   border: solid 1px black;
-}
-
-#attribution {
-  font-size: 0.75rem;
 }

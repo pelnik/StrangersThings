@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from'react-router-dom';
 import { removeLocalStorageToken } from'../../utils';
-import { LogoutSVG, MessageSVG, ComposeSVG } from '../../Media';
+import { LogoutSVG, MessageSVG, Compose2 } from '../../Media';
 
 
 function NavbarLoggedIn({setUserToken}) {
@@ -24,7 +24,7 @@ function NavbarLoggedIn({setUserToken}) {
         </Link>
         <Link to="/submit">
           <div className="icon-wrapper">
-            <ComposeSVG />
+            <Compose2 height="100%" width="100%" />
             <p>Submit</p>
           </div>
         </Link>

@@ -67,32 +67,35 @@ function Posts({ userToken }) {
           <p>Search:</p>
           <input id="postFilter" onChange={onSearchChange}></input>
         </div>
-        <div id="all-posts">
-          {[...posts]
-            .filter((post) => {
-              return (
-                post.title.toLowerCase().includes(postFilter) ||
-                post.description.toLowerCase().includes(postFilter) ||
-                post.price.toLowerCase().includes(postFilter) ||
-                post.author.username.toLowerCase().includes(postFilter)
-              );
-            })
-            .reverse()
-            .map((post) => {
-              return (
-                <IndividualPost
-                  key={`post: ${post._id}`}
-                  postData={post}
-                  userToken={userToken}
-                  posts={posts}
-                  setPosts={setPosts}
-                />
-              );
-            })}
+        <div id="all-posts-plus-attribution">
+          <div id="all-posts">
+            {[...posts]
+              .filter((post) => {
+                return (
+                  post.title.toLowerCase().includes(postFilter) ||
+                  post.description.toLowerCase().includes(postFilter) ||
+                  post.price.toLowerCase().includes(postFilter) ||
+                  post.author.username.toLowerCase().includes(postFilter)
+                );
+              })
+              .reverse()
+              .map((post) => {
+                return (
+                  <IndividualPost
+                    key={`post: ${post._id}`}
+                    postData={post}
+                    userToken={userToken}
+                    posts={posts}
+                    setPosts={setPosts}
+                  />
+                );
+              })}
+          </div>
+          <p id="attribution">
+            Icon attribution to: https://handdrawngoods.com, Sabr Studio of iconfinder.com, https://elements.envato.com/all-items/deemakdaksinas,
+            papergarden of iconfinder.com, https://creativemarket.com/eucalyp, and https://creativemarket.com/BomSymbols
+          </p>
         </div>
-        <p id="attribution">
-          Icon attribution to: https://handdrawngoods.com, Sabr Studio of iconfinder.com, https://elements.envato.com/all-items/deemakdaksinas, and papergarden of iconfinder.com
-        </p>
       </div>
     </div>
   );
