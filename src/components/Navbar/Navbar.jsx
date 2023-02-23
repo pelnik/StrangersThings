@@ -34,9 +34,14 @@ function Navbar({ userToken, setUserToken }) {
   }
 
   return (
-    <div id="Navbar">Í
+    <div id="Navbar">
       <div id="leftNavbar">
-        <Link to="/" className="navbar-icons"><HomeSVG /></Link>
+        <Link to="/">
+          <div className="icon-wrapper">
+            <HomeSVG />
+            <p>Home</p>
+          </div>
+        </Link>
       </div>
       <div id="rightNavbar" onClick={clearAlerts}>
         {returnAlertElement(alert)}
