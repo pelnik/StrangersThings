@@ -32,7 +32,7 @@ function Messages({ userToken, myData }) {
 
   return (
     userToken
-    ? <div id="message-container">
+    ? <div className="sidebar" id="message-container">
       <div id='message-buttons'>
         <button onClick={onClickMode} value={buttonValue}>{buttonText}</button>
       </div>

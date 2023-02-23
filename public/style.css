@@ -140,7 +140,7 @@ body {
 #mainContent {
   display: grid;
   grid-template-rows: minmax(0, 1fr);
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr minmax(0, 300px);
 
   min-height: 0;
   grid-row: 2;
@@ -386,6 +386,11 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+}
+
+.sidebar {
+  overflow-y: scroll;
+  min-height: 0;
 }
 
 #message-container {

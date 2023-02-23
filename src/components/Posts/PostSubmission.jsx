@@ -71,7 +71,7 @@ function PostSubmission({
   return (
     userToken === null
     ? null
-    : <div id="post-submission-parent">
+    : <div className="sidebar" id="post-submission-parent">
       <h1> Enter details of your post below: </h1>
       <form id="postSubmissionForm" onSubmit={onSubmitPost}>
         {/* Using a child because HTML was a little too messy */}
