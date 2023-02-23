@@ -7,7 +7,7 @@ const IndividualPost = ({postData, userToken, posts, setPosts}) => {
   const [messageBox, setMessageBox] = useState(false);
 
 
-  const className = postData.isAuthor ? 'individual-post-content my-post' : 'individual-post-content';
+  const className = postData.isAuthor ? 'individual-post-container my-post' : 'individual-post-container';
   const myPostHeader = postData.isAuthor ? <h3>Your post</h3> : null;
 
   async function onClickDelete() {
@@ -36,9 +36,9 @@ const IndividualPost = ({postData, userToken, posts, setPosts}) => {
 
     
     if (token !== null && isAuthor) {
-      return <button id="my-post-delete" onClick={onClickDelete}>Delete</button>;
+      return <button className="post-button my-post-delete" onClick={onClickDelete}>Delete</button>;
     } else if (token !== null && !isAuthor) {
-      return <button id="send-message" onClick={onClickOpenMessage}>Send Message</button>
+      return <button className="post-button send-message" onClick={onClickOpenMessage}>Send Message</button>
     }
   }
   
@@ -51,17 +51,20 @@ const IndividualPost = ({postData, userToken, posts, setPosts}) => {
 
 
   return (
-    <div className="individual-post-container">
-      <div className={className}>
+    <div className={className}>
+      <div className="individual-post-content">
         <div className='individual-post'>
           {myPostHeader}
           <div>Post Title: {postData.title}</div>
           <div>Post Description: {postData.description}</div>
           <div>Post Price: {postData.price}</div>
-          <div>Post Author: {postData.author.username}</div>
+          <div>Post Location: {postData.location}</div>
           <div>Will Deliver: {postData.willDeliver ? 'Yes' : 'No'}</div>
+          <div>User: {postData.author.username}</div>
         </div>
-        {authUserPostInfo}
+        <div className="button-wrapper">
+          {authUserPostInfo}
+        </div>
       </div>
       {
         messageBox

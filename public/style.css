@@ -2,6 +2,7 @@
   --lightYellow: #FAF7E1;
   --blue: #99D1FF;
   --lightPink: #F3C8F7;
+  --brightPink: #EE7FF9;
   --darkBlue: #90C5F0;
 }
 
@@ -295,8 +296,8 @@ body {
   flex-wrap: nowrap;
 
   flex-grow: 0;
-  padding: 20px;
-  border: solid 1px var(--darkBlue);
+  padding: 10px;
+  background-color: var(--blue);
 }
 
 .individual-post-content {
@@ -304,31 +305,54 @@ body {
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-between;
+  gap: 30px;
+
   flex-grow: 0;
   flex-basis: 400px;
   min-width: 400px;
   max-width:400px;
+  padding: 15px;
+  background-color: var(--lightYellow);
 }
 
 .individual-post {
   display: flex;
   gap: 15px;
   flex-direction: column;
+  color: black;
 }
+
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.my-post {
+  background-color: var(--lightPink);
+}
+
+.my-post h3 {
+  color: var(--brightPink);
+}
+
+.post-button {
+  background-color: var(--blue);
+  color: white;
+  padding: 5px;
+}
+
+.my-post-delete {
+  background-color: var(--lightPink);
+}
+
 
 .message-content {
   flex-basis: 300px;
   flex-grow: 0;
   min-width: 300px;
   max-width:300px;
-}
-
-.my-post {
-  border: solid 2px red;
-}
-
-.my-post h3 {
-  color: red;
 }
 
 
