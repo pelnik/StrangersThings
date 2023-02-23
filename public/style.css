@@ -261,3 +261,7 @@ body {
   padding: 20px;
   border: solid 1px black;
 }
+
+#attribution {
+  font-size: 0.75rem;
+}

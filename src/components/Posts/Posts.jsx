@@ -111,7 +111,7 @@ function Posts({ userToken }) {
         {
           <Routes>
             <Route path="/profile" element={null} />
-            <Route path="*" element={showMessagesButton()} />
+            <Route path="*" element={showMessagesButton(userToken)} />
           </Routes>
         }
         {userToken ? (
@@ -149,6 +149,9 @@ function Posts({ userToken }) {
               );
             })}
         </div>
+        <p id="attribution">
+          Icon attribution to: https://handdrawngoods.com, Sabr Studio of iconfinder.com, https://elements.envato.com/all-items/deemakdaksinas, and papergarden of iconfinder.com
+        </p>
       </div>
     </div>
   );

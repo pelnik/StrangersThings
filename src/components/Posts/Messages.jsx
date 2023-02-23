@@ -40,6 +40,7 @@ function Messages({ userToken, myData }) {
       {
         myData.messages
         .filter(filterMessages)
+        .reverse()
         .map((message, idx) => {
           return <div className='individual-message' key = {`messages: ${message._id} ${idx}`}>
             <p>From: {message.fromUser.username}</p>

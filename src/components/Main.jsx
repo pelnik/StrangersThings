@@ -10,6 +10,10 @@ function Main() {
     setUserToken(checkLocalStorageToken());
   }, []);
 
+  useEffect(() => {
+    console.log('current token', userToken);
+  }, [userToken]);
+  
   return (
     <div id="main">
       <Navbar userToken={userToken} setUserToken={setUserToken} />
