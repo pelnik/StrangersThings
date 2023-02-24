@@ -19,7 +19,7 @@ function NavbarNotLoggedIn({iconFill}) {
     <div id="navbar-not-logged-in">
       <button onClick={onClickRegister} className="navbar-icons">
         <div className="icon-wrapper">
-          <RegisterSVG fill={iconFill} height="100%" width="100%" />
+          <RegisterSVG fill={iconFill} height="100%"  />
           <p>Register</p>
         </div>
       </button>

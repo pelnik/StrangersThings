@@ -24,7 +24,7 @@ function NavbarLoggedIn({setUserToken}) {
         </Link>
         <Link to="/submit">
           <div className="icon-wrapper">
-            <Compose2 height="100%" width="100%" />
+            <Compose2 height="100%" />
             <p>Submit</p>
           </div>
         </Link>
