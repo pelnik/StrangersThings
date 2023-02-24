@@ -42,21 +42,6 @@ function Posts({ userToken, postFilter }) {
 
   return (
     <div id="mainContent">
-      <Routes>
-        <Route
-          path="/profile"
-          element={<Messages userToken={userToken} myData={myData} />}
-        />
-        <Route
-          path="/submit"
-          element={<PostSubmission
-            userToken={userToken}
-            posts={posts}
-            setPosts={setPosts}
-          />}
-        />
-        <Route path="*" element={null} />
-      </Routes>
       <div id="post-page-container">
         <div className="generic-flex-row" id="post-header-container">
           <Logo height="100%"/>
@@ -92,6 +77,21 @@ function Posts({ userToken, postFilter }) {
           </p>
         </div>
       </div>
+      <Routes>
+        <Route
+          path="/profile"
+          element={<Messages userToken={userToken} myData={myData} />}
+        />
+        <Route
+          path="/submit"
+          element={<PostSubmission
+            userToken={userToken}
+            posts={posts}
+            setPosts={setPosts}
+          />}
+        />
+        <Route path="*" element={null} />
+      </Routes>
     </div>
   );
 }

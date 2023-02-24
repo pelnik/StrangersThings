@@ -138,9 +138,10 @@ body {
 }
 
 #mainContent {
-  display: grid;
-  grid-template-rows: minmax(0, 1fr);
-  grid-template-columns: 1fr minmax(0, 300px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
 
   min-height: 0;
   grid-row: 2;
@@ -156,9 +157,9 @@ body {
   position: relative;
   overflow: scroll;
 
+  flex-grow: 1;
   min-height: 0;
   padding: 20px;
-  grid-row: 1;
   grid-template-columns: 2;
 }
 
@@ -391,6 +392,7 @@ body {
 .sidebar {
   overflow-y: scroll;
   min-height: 0;
+  flex: 0 0 300px;
 }
 
 #message-container {
