@@ -14,10 +14,10 @@ const IndividualPostSubmissionDetail = ({
   const id = `submissionPost${capitalKey}`;
 
   return (
-    <div className="submission-detail" id={id}>
+    <div className="submissionDetail" id={id}>
       <label className="submissionLabel">{label}</label>
       {
-        propKey === 'description' || propKey === 'title'
+        propKey === 'description'
         ? <textarea
           type={propKey !== 'willDeliver' ? 'text' : 'checkbox'}
           id={`${id}Input`}

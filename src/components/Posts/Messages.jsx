@@ -3,18 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 function Messages({ userToken, myData }) {
   const [buttonValue, setButtonValue] = useState("Received");
-  const [buttonText, setButtonText] = useState("See Sent Messages");
+  const [buttonText, setButtonText] = useState("Switch to Sent");
 
   const navigate = useNavigate();
 
   function onClickMode() {
     if (buttonValue === "Received") {
       setButtonValue("Sent");
-      setButtonText("See Received Messages");
+      setButtonText("Switch to Received");
     }
     if (buttonValue === "Sent") {
       setButtonValue("Received");
-      setButtonText("See Sent Messages");
+      setButtonText("Switch to Sent");
     }
   }
 

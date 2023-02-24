@@ -164,8 +164,7 @@ body {
 }
 
 #post-header-container {
-  flex-grow: 0;
-  flex-shrink: 1;
+  flex: 1 1 300px;
   flex-wrap: wrap;
   gap: 10px;
   color: var(--blue)
@@ -196,39 +195,17 @@ body {
 #post-submission-parent {
   padding: 20px;
   display: flex;
-  gap: 30px;
+  gap: 10px;
   flex-direction: column;
 
   grid-row: 1;
   grid-column: 2;
 }
 
-#post-submission-form {
+#postSubmissionForm {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-#postSubmitContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-#post-submission-form input, #post-submission-form textarea {
-  border: none;
-}
-
-#post-submit-button {
-  background-color: var(--blue);
-  color: white;
-}
-
-
-.submission-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 }
 
 #submissionPostDescription {
@@ -240,14 +217,6 @@ body {
 #submissionPostDescriptionInput {
   height: 5rem;
 }
-
-#submissionPostWillDeliver {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  gap: 15px;
-}
-
 
 
 .login-input-container {
@@ -448,13 +417,6 @@ body {
   position: absolute;
   top: 5px;
   right: 5px;
-  color: var(--darkBlue)
-}
-
-.sidebar-content-container {
-  border: 10px solid var(--lightPink);
-  position: relative;
-  padding: 20px;
 }
 
 #message-container {
@@ -462,6 +424,9 @@ body {
   flex-direction: column;
   align-items: stretch;
   gap: 10px;
+  padding: 20px;
+  border: 10px solid var(--lightPink);
+  position: relative;
 
   grid-column: 2;
   grid-row: 1;
@@ -483,7 +448,6 @@ body {
 .sidebar-header {
   text-align: center;
   color: var(--blue);
-  font-size: 1.5rem;
 }
 
 
