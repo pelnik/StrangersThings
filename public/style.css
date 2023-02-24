@@ -408,9 +408,9 @@ body {
   overflow-y: scroll;
   min-height: 0;
   flex: 0 1 300px;
-  border-left: double 10px var(--lightPink);
   border-radius: 0;
   position: relative;
+  padding: 15px;
 }
 
 .sidebar-close {
@@ -425,6 +425,8 @@ body {
   align-items: stretch;
   gap: 10px;
   padding: 20px;
+  border: 10px solid var(--lightPink);
+  position: relative;
 
   grid-column: 2;
   grid-row: 1;
@@ -433,21 +435,35 @@ body {
 #message-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  margin-top: 15px;
 }
 
-#messages-header {
-  text-align: center;
+#message-button {
+  background-color: var(--blue);
+  color: white;
+  padding: 5px 10px;
 }
+
+.sidebar-header {
+  text-align: center;
+  color: var(--blue);
+}
+
 
 
 .individual-message {
   padding: 20px;
-  border: solid 1px black;
+  border-bottom: 2px solid var(--blue);
+  border-radius: 0;
+}
+
+.individual-message:last-child {
+  border-bottom: none;
 }
 
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
   #Navbar {
     flex-direction: column;
     align-items: center;
