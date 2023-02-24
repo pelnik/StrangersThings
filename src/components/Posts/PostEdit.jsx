@@ -20,3 +20,10 @@ function postEdit () {
         }
 }
 }
+return
+{
+   <div>
+    <button onClick={() => deletePostFromDOM(post._id, idx)}>delete me</button>
+    <Link><button>Edit Me</button></Link>
+   </div>; <button>Nothing to see here</button>
+}
