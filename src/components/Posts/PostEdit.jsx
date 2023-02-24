@@ -1,8 +1,7 @@
 import React,{ useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { postEdit } from "../api-adapter";
 
-function postEdit () {
+function PostEdit () {
     const location = useLocation();
 
     const [newPosts, setPosts] = useState(location.state.title);
@@ -18,12 +17,14 @@ function postEdit () {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    return (
+    <div>
+        <button onClick={() => deletePostFromDOM(post._id, idx)}>delete me</button>
+        <Link><button>Edit Me</button></Link>
+    </div>
+    )
 }
-}
-return
-{
-   <div>
-    <button onClick={() => deletePostFromDOM(post._id, idx)}>delete me</button>
-    <Link><button>Edit Me</button></Link>
-   </div>; <button>Nothing to see here</button>
-}
+
+export default PostEdit;

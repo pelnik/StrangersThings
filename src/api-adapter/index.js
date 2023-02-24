@@ -146,51 +146,39 @@ export const postMessages = async (token, post_id, content) => {
   }
 }
 
-export const IndividualPost = async (postData, userToken, posts, setPosts) => {
+export const postEdit = async (token, editedPost) => {
   try {
-    const response = await fetch (`${BASE_URL}/posts/${id}`, {
-      method: "PATCH",
+    const response = await fetch(BASE_URL + `/posts/${editPost._id}`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        posts: {
-          title: title, 
-          description: description,
-          price: price,
-        },
-    }),
-  });
-
-  const result = await response.json();
-  console.log(result);
-} catch (error) {
-  console.log ;{
-    console.log(error);
-  }
-}
-}
-
-export const postEdit = async (postData, userToken, posts, setPosts) => {
-  try {
-    const response = await fetch(`${BASE_URL}/post/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem}("token")}`,
-      },
-      body: JSON.stringify({
+<<<<<<< HEAD
         postEdit: {
           title: "Strangers Things",
           description: "Enter Description",
           price:"Enter price",
           location:"Enter Location",
           willDeliver:"Y/n",
+=======
+        post: {
+          title: editedPost.title,
+          description: editedPost.description,
+          price: editedPost.price,
+          location: editedPost.location,
+          willDeliver: editedPost.willDeliver,
+>>>>>>> 4bef163 (get post ready for postedit interation, update api logic)
         }
       })
-    });
+    })
+    const result = await response.json();
+
+ 
+    console.log('patch message result', result)
+    return result;
   } catch (error) {
-    console.log(error)
+    console.error(error);
   }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { deleteSubmission } from "../../api-adapter";
-import { PostMessageBox } from "..";
+import { PostMessageBox, PostEdit } from "..";
 
 const IndividualPost = ({
   postData,
@@ -10,11 +10,16 @@ const IndividualPost = ({
   setMyDataApi,
 }) => {
   const [messageBox, setMessageBox] = useState(false);
+  const [showEditPage, setShowEditPage] = useState(false);
 
   const className = postData.isAuthor
     ? "individual-post-container my-post"
     : "individual-post-container";
   const myPostHeader = postData.isAuthor ? <h3>Your post</h3> : null;
+
+  function onClickEdit() {
+    setShowEditPage(true)
+  }
 
   async function onClickDelete() {
     try {
@@ -44,9 +49,14 @@ const IndividualPost = ({
 
     if (token !== null && isAuthor) {
       return (
-        <button className="post-button my-post-delete" onClick={onClickDelete}>
-          Delete
-        </button>
+        <>
+          <button className="post-button my-post-edit" onClick={onClickEdit}>
+            Edit
+          </button>
+          <button className="post-button my-post-delete" onClick={onClickDelete}>
+            Delete
+          </button>
+        </>
       );
     } else if (token !== null && !isAuthor) {
       return (
@@ -63,7 +73,9 @@ const IndividualPost = ({
   const authUserPostInfo = authUserPostArea(userToken, postData.isAuthor);
 
   return (
-    <div className={className}>
+    showEditPage
+    ? <PostEdit />
+    : <div className={className}>
       <div className="individual-post-content">
         <div className="individual-post">
           {myPostHeader}
