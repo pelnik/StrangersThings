@@ -69,6 +69,7 @@ function Posts({ userToken, postFilter }) {
                     userToken={userToken}
                     posts={posts}
                     setPosts={setPosts}
+                    setMyDataApi={setMyDataApi}
                   />
                 );
               })}

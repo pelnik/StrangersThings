@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { postMessages } from "../../api-adapter";
 
-function PostMessageBox({ userToken, postData }) {
+function PostMessageBox({ userToken, postData, setMyDataApi }) {
   const [message, setMessage] = useState("");
 
   function onChangeHandler(evt) {
@@ -14,6 +14,7 @@ function PostMessageBox({ userToken, postData }) {
 
     if (response.success === true) {
       setMessage("");
+       setMyDataApi(userToken);
     }
   }
 

@@ -3,7 +3,7 @@ import { deleteSubmission } from '../../api-adapter'
 import { PostMessageBox } from '..';
 
 
-const IndividualPost = ({postData, userToken, posts, setPosts}) => {
+const IndividualPost = ({postData, userToken, posts, setPosts, setMyDataApi }) => {
   const [messageBox, setMessageBox] = useState(false);
 
 
@@ -68,7 +68,7 @@ const IndividualPost = ({postData, userToken, posts, setPosts}) => {
       </div>
       {
         messageBox
-        ? <PostMessageBox userToken={userToken} postData={postData} />
+        ? <PostMessageBox userToken={userToken} postData={postData} setMyDataApi={setMyDataApi} />
         : null
       }
     </div>
