@@ -181,7 +181,7 @@ export const postEdit = async (postData, userToken, posts, setPosts) => {
         Authorization: `Bearer ${localStorage.getItem}("token")}`,
       },
       body: JSON.stringify({
-        post: {
+        postEdit: {
           title: "Strangers Things",
           description: "Enter Description",
           price:"Enter price",
