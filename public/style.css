@@ -442,5 +442,17 @@ body {
   #logo-container {
     height: 2rem;
   }
+
+  .individual-post-container {
+    flex-direction: column;
+  }
+
+  .individual-post-content {
+    flex-basis:auto;
+  }
+
+  .message-content {
+    flex-basis: 100px;
+  }
   
 }
