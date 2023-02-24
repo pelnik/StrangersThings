@@ -44,7 +44,9 @@ function Posts({ userToken, postFilter }) {
     <div id="mainContent">
       <div id="post-page-container">
         <div className="generic-flex-row" id="post-header-container">
-          <Logo height="100%"/>
+          <div id="logo-container">
+            <Logo height="100%"/>
+          </div>
           <h1 id="post-header">Stranger's Things</h1>
         </div>
         <div id="all-posts-plus-attribution">

@@ -164,9 +164,13 @@ body {
 }
 
 #post-header-container {
-  height: 4rem;
+  flex-wrap: wrap;
   gap: 10px;
   color: var(--blue)
+}
+
+#logo-container {
+  height: 4rem;
 }
 
 #post-header {
@@ -272,6 +276,7 @@ body {
   overflow-y: scroll;
   align-items: center;
   gap: 50px;
+  flex-grow: 1;
 }
 
 #all-posts {
@@ -298,7 +303,7 @@ body {
   align-items: stretch;
   gap: 5px;
 
-  flex: 1 0 400px;
+  flex: 1 1 400px;
   padding: 10px;
   background-color: var(--blue);
 }
@@ -393,6 +398,8 @@ body {
   overflow-y: scroll;
   min-height: 0;
   flex: 0 0 300px;
+  border-left: double 10px var(--lightPink);
+  border-radius: 0;
 }
 
 #message-container {
@@ -427,4 +434,13 @@ body {
   #loginFormContainer {
     flex-direction: column;
   }
+
+  #post-header {
+    font-size: 1.5rem;
+  }
+
+  #logo-container {
+    height: 2rem;
+  }
+  
 }
