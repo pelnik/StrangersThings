@@ -48,15 +48,10 @@ const IndividualPost = ({
     }
 
     if (token !== null && isAuthor) {
-      return (
-        <>
-          <button className="post-button my-post-edit" onClick={onClickEdit}>
-            Edit
-          </button>
+      return (      
           <button className="post-button my-post-delete" onClick={onClickDelete}>
             Delete
           </button>
-        </>
       );
     } else if (token !== null && !isAuthor) {
       return (

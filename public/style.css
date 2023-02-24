@@ -222,6 +222,7 @@ body {
 #post-submit-button {
   background-color: var(--blue);
   color: white;
+  padding: 5px 10px;
 }
 
 
@@ -334,6 +335,7 @@ body {
   align-items: stretch;
   gap: 5px;
 
+
   flex: 1 1 250px;
   padding: 10px;
   background-color: var(--blue);
@@ -356,6 +358,8 @@ body {
   gap: 15px;
   flex-direction: column;
   color: black;
+  max-height: 350px;
+  overflow-y: scroll;
 }
 
 .button-wrapper {
