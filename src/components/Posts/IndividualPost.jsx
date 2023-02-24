@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
-import { deleteSubmission } from '../../api-adapter'
-import { PostMessageBox } from '..';
+import React, { useState } from "react";
+import { deleteSubmission } from "../../api-adapter";
+import { PostMessageBox } from "..";
 
-
-const IndividualPost = ({postData, userToken, posts, setPosts, setMyDataApi }) => {
+const IndividualPost = ({
+  postData,
+  userToken,
+  posts,
+  setPosts,
+  setMyDataApi,
+}) => {
   const [messageBox, setMessageBox] = useState(false);
 
-
-  const className = postData.isAuthor ? 'individual-post-container my-post' : 'individual-post-container';
+  const className = postData.isAuthor
+    ? "individual-post-container my-post"
+    : "individual-post-container";
   const myPostHeader = postData.isAuthor ? <h3>Your post</h3> : null;
 
   async function onClickDelete() {
@@ -16,9 +22,11 @@ const IndividualPost = ({postData, userToken, posts, setPosts, setMyDataApi }) =
 
       if (response.success === true) {
         const clonePosts = [...posts];
-        setPosts(clonePosts.filter((post) => {
-          return post._id !== postData._id;
-        }))
+        setPosts(
+          clonePosts.filter((post) => {
+            return post._id !== postData._id;
+          })
+        );
       }
     } catch (err) {
       console.error(err);
@@ -34,45 +42,50 @@ const IndividualPost = ({postData, userToken, posts, setPosts, setMyDataApi }) =
       return null;
     }
 
-    
     if (token !== null && isAuthor) {
-      return <button className="post-button my-post-delete" onClick={onClickDelete}>Delete</button>;
+      return (
+        <button className="post-button my-post-delete" onClick={onClickDelete}>
+          Delete
+        </button>
+      );
     } else if (token !== null && !isAuthor) {
-      return <button className="post-button send-message" onClick={onClickOpenMessage}>Send Message</button>
+      return (
+        <button
+          className="post-button send-message"
+          onClick={onClickOpenMessage}
+        >
+          Send Message
+        </button>
+      );
     }
   }
-  
-
 
   const authUserPostInfo = authUserPostArea(userToken, postData.isAuthor);
-
-
-
-
 
   return (
     <div className={className}>
       <div className="individual-post-content">
-        <div className='individual-post'>
+        <div className="individual-post">
           {myPostHeader}
           <div>Post Title: {postData.title}</div>
           <div>Post Description: {postData.description}</div>
           <div>Post Price: {postData.price}</div>
           <div>Post Location: {postData.location}</div>
-          <div>Will Deliver: {postData.willDeliver ? 'Yes' : 'No'}</div>
+          <div>Will Deliver: {postData.willDeliver ? "Yes" : "No"}</div>
           <div>User: {postData.author.username}</div>
         </div>
-        <div className="button-wrapper">
-          {authUserPostInfo}
-        </div>
+        <div className="button-wrapper">{authUserPostInfo}</div>
       </div>
-      {
-        messageBox
-        ? <PostMessageBox userToken={userToken} postData={postData} setMyDataApi={setMyDataApi} />
-        : null
-      }
+      {messageBox ? (
+        <PostMessageBox
+          userToken={userToken}
+          postData={postData}
+          setMyDataApi={setMyDataApi}
+          setMessageBox={setMessageBox}
+        />
+      ) : null}
     </div>
-  )
-}
+  );
+};
 
 export default IndividualPost;

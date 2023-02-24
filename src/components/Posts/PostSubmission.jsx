@@ -119,8 +119,8 @@ function PostSubmission({
           <input type="submit" value="Post" />
         </div>
       </form>
-      <button id="close-submission-page" onClick={onClickClose}>
-        Close
+      <button class="sidebar-close" id="close-submission-page" onClick={onClickClose}>
+        x
       </button>
     </div>
   );

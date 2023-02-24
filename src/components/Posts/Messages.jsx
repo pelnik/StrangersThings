@@ -49,7 +49,7 @@ function Messages({ userToken, myData }) {
           </div>
         })
       }
-      <button onClick={onClickClose}>Close</button>
+      <button onClick={onClickClose} className="sidebar-close" >x</button>
     </div>
     : null
   )
