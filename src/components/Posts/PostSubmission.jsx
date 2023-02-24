@@ -72,56 +72,58 @@ function PostSubmission({
     userToken === null
     ? null
     : <div className="sidebar" id="post-submission-parent">
-      <h1> Enter details of your post below: </h1>
-      <form id="postSubmissionForm" onSubmit={onSubmitPost}>
-        {/* Using a child because HTML was a little too messy */}
-        <IndividualPostSubmissionDetail
-          propKey="title"
-          label="Title:"
-          required="required"
-          minLength="6"
-          submissionDetails={submissionDetails}
-          onChangeDetail={onChangeDetail}
-        />
-        <IndividualPostSubmissionDetail
-          propKey="description"
-          label="Description:"
-          required="required"
-          minLength="10"
-          submissionDetails={submissionDetails}
-          onChangeDetail={onChangeDetail}
-        />
-        <IndividualPostSubmissionDetail
-          propKey="price"
-          label="Price:"
-          required="required"
-          minLength="1"
-          submissionDetails={submissionDetails}
-          onChangeDetail={onChangeDetail}
-        />
-        <IndividualPostSubmissionDetail
-          propKey="location"
-          label="Location:"
-          required={null}
-          minLength={null}
-          submissionDetails={submissionDetails}
-          onChangeDetail={onChangeDetail}
-        />
-        <IndividualPostSubmissionDetail
-          propKey="willDeliver"
-          label="Will Deliver:"
-          required={null}
-          minLength={null}
-          submissionDetails={submissionDetails}
-          onChangeDetail={onChangeDetail}
-        />
-        <div id="postSubmitContainer">
-          <input type="submit" value="Post" />
-        </div>
-      </form>
-      <button class="sidebar-close" id="close-submission-page" onClick={onClickClose}>
-        x
-      </button>
+      <div className="sidebar-content-container" id="post-submission-parent">
+        <button className="sidebar-close" id="close-submission-page" onClick={onClickClose}>
+          x
+        </button>
+        <h1 className="sidebar-header"> Enter details of your post below: </h1>
+        <form id="post-submission-form" onSubmit={onSubmitPost}>
+          {/* Using a child because HTML was a little too messy */}
+          <IndividualPostSubmissionDetail
+            propKey="title"
+            label="Title:"
+            required="required"
+            minLength="6"
+            submissionDetails={submissionDetails}
+            onChangeDetail={onChangeDetail}
+          />
+          <IndividualPostSubmissionDetail
+            propKey="description"
+            label="Description:"
+            required="required"
+            minLength="10"
+            submissionDetails={submissionDetails}
+            onChangeDetail={onChangeDetail}
+          />
+          <IndividualPostSubmissionDetail
+            propKey="price"
+            label="Price:"
+            required="required"
+            minLength="1"
+            submissionDetails={submissionDetails}
+            onChangeDetail={onChangeDetail}
+          />
+          <IndividualPostSubmissionDetail
+            propKey="location"
+            label="Location:"
+            required={null}
+            minLength={null}
+            submissionDetails={submissionDetails}
+            onChangeDetail={onChangeDetail}
+          />
+          <IndividualPostSubmissionDetail
+            propKey="willDeliver"
+            label="Will Deliver:"
+            required={null}
+            minLength={null}
+            submissionDetails={submissionDetails}
+            onChangeDetail={onChangeDetail}
+          />
+          <div id="postSubmitContainer">
+            <input type="submit" value="Post" id="post-submit-button" />
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
