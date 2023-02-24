@@ -139,7 +139,6 @@ export const postMessages = async (token, post_id, content) => {
     const result = await response.json();
 
  
-    console.log('post message result', result)
     return result;
   } catch (error) {
     console.error(error);

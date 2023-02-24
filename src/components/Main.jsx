@@ -12,7 +12,6 @@ function Main() {
   }, []);
 
   useEffect(() => {
-    console.log("current token", userToken);
   }, [userToken]);
 
   return (

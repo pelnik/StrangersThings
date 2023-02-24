@@ -10,16 +10,13 @@ const IndividualPost = ({
   setMyDataApi,
 }) => {
   const [messageBox, setMessageBox] = useState(false);
-  const [showEditPage, setShowEditPage] = useState(false);
 
   const className = postData.isAuthor
     ? "individual-post-container my-post"
     : "individual-post-container";
   const myPostHeader = postData.isAuthor ? <h3>Your post</h3> : null;
 
-  function onClickEdit() {
-    setShowEditPage(true)
-  }
+
 
   async function onClickDelete() {
     try {
