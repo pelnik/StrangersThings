@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { deleteSubmission } from "../../api-adapter";
-import { PostMessageBox, PostEdit } from "..";
+import { PostMessageBox } from "..";
 
 const IndividualPost = ({
   postData,
@@ -73,9 +73,7 @@ const IndividualPost = ({
   const authUserPostInfo = authUserPostArea(userToken, postData.isAuthor);
 
   return (
-    showEditPage
-    ? <PostEdit />
-    : <div className={className}>
+    <div className={className}>
       <div className="individual-post-content">
         <div className="individual-post">
           {myPostHeader}
