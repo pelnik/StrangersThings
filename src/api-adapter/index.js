@@ -171,3 +171,26 @@ export const IndividualPost = async (postData, userToken, posts, setPosts) => {
   }
 }
 }
+
+export const postEdit = async (postData, userToken, posts, setPosts) => {
+  try {
+    const response = await fetch(`${BASE_URL}/post/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem}("token")}`,
+      },
+      body: JSON.stringify({
+        post: {
+          title: "Strangers Things",
+          description: "Enter Description",
+          price:"Enter price",
+          location:"Enter Location",
+          willDeliver:"Y/n",
+        }
+      })
+    });
+  } catch (error) {
+    console.log(error)
+  }
+}
